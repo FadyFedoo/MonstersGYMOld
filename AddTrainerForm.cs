@@ -14,6 +14,7 @@ namespace MonstersGYM
 {
     public partial class AddTrainerForm : Form
     {
+        
         OwnerOptionForm OwnerOptionForm;
         ITrainers Trainers = new TrainersRepo();
         public AddTrainerForm(OwnerOptionForm OwnerOptionForm)
