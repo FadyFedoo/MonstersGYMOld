@@ -1,0 +1,162 @@
+﻿using MonstersGYM.Core.Interface;
+using MonstersGYM.Core.PocoClasses;
+using MonstersGYM.Infrastructure.Repository;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MonstersGYM
+{
+    public partial class ReportsMainForm : Form
+    {
+        OwnerOptionForm OwnerOptionForm;
+        IUserAccounts UserAccount = new UserAccountRepo();
+        IUserInAndOut UserLogs = new UserInAndOutRepo();
+        IWelcomeProfile WelcomeProfile = new WelcomeProfileRepo();
+        IMemberSignIn MemberSignIn = new MemberSignInRepo();
+        IRegisteredCard RegisteredCard = new RegisteredCardRepo();
+        IIncome Income = new IncomeRepo();
+        List<MembershipReport> memberShipDetails = new List<MembershipReport>();
+
+        List<User> users;
+        public ReportsMainForm(OwnerOptionForm OwnerOptionForm)
+        {
+            InitializeComponent();
+            this.OwnerOptionForm = OwnerOptionForm;
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            OwnerOptionForm.Show();
+        }
+
+
+        private void ReportsMainForm_Load(object sender, EventArgs e)
+        {
+            string errorMsg;
+            users = UserAccount.LoadAllUsers(out errorMsg);
+            foreach (var user in users)
+                comboBox1.Items.Add(user.UserName);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+
+            
+        }
+        void loadUserLogsReport(long userId,DateTime fromDate, DateTime toDate)
+        {
+            string errorMsg;
+            List<UserLogsReport> Logs = UserLogs.LoadUserLogsReport(userId, fromDate,toDate,out errorMsg);
+            dataGridView1.DataSource = Logs;
+        }
+        void LoadWelcomeProfile(long userId, DateTime fromDate, DateTime toDate)
+        {
+            string errorMsg;
+            List<GeneralWelcomeProfileReport> general;
+            List<WelcomeProfileReport> Logs = WelcomeProfile.LoadVisitsLogsReport(userId, fromDate, toDate, out general, out errorMsg);
+            dataGridView2.DataSource = Logs;
+            dataGridView5.DataSource = general;
+            if (!checkBox2.Checked)
+            {
+                chart1.DataSource = general;
+
+                chart1.Series["WelcomeProfile"].XValueMember = "Date";
+                chart1.Series["WelcomeProfile"].YValueMembers = "Count";
+                chart1.Titles.Add("Welcome Profile");
+            }
+        }
+        void LoadMemberSignIn(long userId, DateTime fromDate, DateTime toDate)
+        {
+            string errorMsg;
+            List<MemberLogsReport> Logs = MemberSignIn.LoadMemberLogsReport(userId, fromDate, toDate, out errorMsg);
+            dataGridView3.DataSource = Logs;
+        }
+        void LoadIncome(long userId, DateTime fromDate, DateTime toDate)
+        {
+            string errorMsg;
+            List<GeneralIncomeReport> general;
+            List<IncomeReport> Logs = Income.LoadIncomeReport(userId, fromDate, toDate,out general, out errorMsg);
+            dataGridView4.DataSource = Logs;
+            dataGridView6.DataSource = general;
+        }
+        void LoadMemberShip(long userId, DateTime fromDate, DateTime toDate)
+        {
+            string errorMsg;
+            List<GeneralMembershipReport> general = RegisteredCard.GetMembershipReport(userId, fromDate, toDate, out memberShipDetails, out errorMsg);
+            dataGridView7.DataSource = general;
+            dataGridView8.DataSource = null;
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            comboBox1_SelectedIndexChanged(null, null);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePicker1.Enabled = !checkBox1.Checked;
+            dateTimePicker2.Enabled = !checkBox1.Checked;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                comboBox1.SelectedItem = null;
+                comboBox1.Enabled = false;
+            }
+            else
+                comboBox1.Enabled = true;
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            string selectedUserName = "";
+            long userId = -1;
+            if (comboBox1.SelectedItem != null)
+            {
+                selectedUserName = comboBox1.SelectedItem.ToString();
+                userId = users.FirstOrDefault(x => x.UserName == selectedUserName).ID;
+            }
+
+            DateTime fromDate = checkBox1.Checked ? DateTime.MinValue.Date : dateTimePicker1.Value.Date;
+            DateTime toDate = checkBox1.Checked ? DateTime.MinValue.Date : dateTimePicker2.Value.Date;
+            progressBar1.Value = 0;
+            loadUserLogsReport(userId, fromDate,toDate);
+            progressBar1.Value+=20;
+
+            LoadWelcomeProfile(userId, fromDate, toDate);
+            progressBar1.Value += 20;
+
+            LoadMemberSignIn(userId, fromDate, toDate);
+            progressBar1.Value += 20;
+
+            LoadIncome(userId, fromDate, toDate);
+            progressBar1.Value += 20;
+
+            LoadMemberShip(userId, fromDate, toDate);
+            progressBar1.Value += 20;
+
+
+        }
+
+        private void ShowDetailsButton_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView7.SelectedRows.Count == 1)
+            {
+                DataGridViewRow row = this.dataGridView7.SelectedRows[0];
+                var memberName = row.Cells["MemberName"].Value as string;
+                var detailes = memberShipDetails.Where(x => x.MemberName == memberName).ToList();
+                dataGridView8.DataSource = detailes;
+            }
+        }
+    }
+}
