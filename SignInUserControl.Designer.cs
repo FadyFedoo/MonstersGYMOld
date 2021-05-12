@@ -185,9 +185,9 @@
             this.label9.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(1023, 525);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(104, 30);
+            this.label9.Size = new System.Drawing.Size(110, 30);
             this.label9.TabIndex = 36;
-            this.label9.Text = "أيام الحظور";
+            this.label9.Text = "أيام الحضور";
             this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // RemainingDaysLabel

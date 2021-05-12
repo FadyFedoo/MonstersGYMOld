@@ -104,81 +104,88 @@ namespace MonstersGYM
 
         private void ScannedBarcodeTextBox_TextChanged(object sender, EventArgs e)
         {
-            string errorMsg = "";
-            long cardId = Cards.GetCardId(ScannedBarcodeTextBox.Text, out errorMsg);
-            long memberId = RegisteredCard.GetMemberID(cardId, out errorMsg);
-            NameLabel.Text = MemberProfile.GetMemberName(memberId, out errorMsg);
-            byte[] pic = MemberProfile.GetMemberProfile(NameLabel.Text, out errorMsg);
-            loadPicture(pic);
-            int cardHeaderId = Cards.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
-            CardTypeLabel.Text = CardDefinition.GetCardName(cardHeaderId, out errorMsg);
-
-            DateTime startDate = RegisteredCard.GetStartDate(memberId, out errorMsg);
-            StartFromLabel.Text = startDate.ToShortDateString();
-
-            DateTime endDate = RegisteredCard.GetEndDate(memberId, out errorMsg);
-            EndDateLabel.Text = endDate.ToShortDateString();
-            int takenFreez = RegisteredCard.GetOldFreez(memberId, out errorMsg);
-            int remainingDays = (endDate - DateTime.Now.Date).Days + takenFreez;
-
-            RemainingDaysLabel.Text = remainingDays.ToString() + " يوم";
-
-            long registeredCardID = RegisteredCard.GetCardID(memberId, out errorMsg);
-
-            int totalAttendance = MemberSignIn.GetTottalAttendance(memberId, registeredCardID, out errorMsg);
-
-            AttendanceLabel.Text = totalAttendance.ToString();
-
-            var trainername = TakenPT.GetReservedPT(cardId, out errorMsg);
-            TrainerNameLabel.Text = string.IsNullOrEmpty(trainername) ? "لا يوجد" : trainername;
-
-            int totalFreez = RegisteredCard.GetTotalFreez(memberId, out errorMsg);
-            int availableFreez = totalFreez - takenFreez;
-            RemainingFreezLabel.Text = availableFreez.ToString();
-
-            int TotalPersonal = RegisteredCard.GetTotalPersonal(memberId, out errorMsg);
-            int takenPersonal = RegisteredCard.GetOldPersonal(memberId, out errorMsg);
-            RemainningPTLabel.Text = (TotalPersonal - takenPersonal).ToString();
-
-            int totalInvitation = RegisteredCard.GetTotalInvitation(memberId, out errorMsg);
-            int takenInvitation = RegisteredCard.GetOldInvitation(memberId, out errorMsg);
-            RemainingInvitationLabel.Text = (totalInvitation - takenInvitation).ToString();
-
-
-            StatusLabel.ForeColor = Color.Black;
-            try
+            if (ScannedBarcodeTextBox.Text.Count() == 4)
             {
-                if (MemberSignIn.SignInBefore(memberId, registeredCardID, out errorMsg))
+                string errorMsg = "";
+                long cardId = Cards.GetCardId(ScannedBarcodeTextBox.Text, out errorMsg);
+                long memberId = RegisteredCard.GetMemberID(cardId, out errorMsg);
+                NameLabel.Text = MemberProfile.GetMemberName(memberId, out errorMsg);
+                byte[] pic = MemberProfile.GetMemberProfile(NameLabel.Text, out errorMsg);
+                loadPicture(pic);
+                int cardHeaderId = Cards.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
+                CardTypeLabel.Text = CardDefinition.GetCardName(cardHeaderId, out errorMsg);
+
+                DateTime startDate = RegisteredCard.GetStartDate(memberId, out errorMsg);
+                StartFromLabel.Text = startDate.ToShortDateString();
+
+                DateTime endDate = RegisteredCard.GetEndDate(memberId, out errorMsg);
+                EndDateLabel.Text = endDate.ToShortDateString();
+                int takenFreez = RegisteredCard.GetOldFreez(memberId, out errorMsg);
+                int remainingDays = (endDate - DateTime.Now.Date).Days + takenFreez;
+
+                RemainingDaysLabel.Text = remainingDays.ToString() + " يوم";
+
+                long registeredCardID = RegisteredCard.GetCardID(memberId, out errorMsg);
+
+                int totalAttendance = MemberSignIn.GetTottalAttendance(memberId, registeredCardID, out errorMsg);
+
+                AttendanceLabel.Text = totalAttendance.ToString();
+
+                var trainername = TakenPT.GetReservedPT(cardId, out errorMsg);
+                TrainerNameLabel.Text = string.IsNullOrEmpty(trainername) ? "لا يوجد" : trainername;
+
+                int totalFreez = RegisteredCard.GetTotalFreez(memberId, out errorMsg);
+                int availableFreez = totalFreez - takenFreez;
+                RemainingFreezLabel.Text = availableFreez.ToString();
+
+                int TotalPersonal = RegisteredCard.GetTotalPersonal(memberId, out errorMsg);
+                int takenPersonal = RegisteredCard.GetOldPersonal(memberId, out errorMsg);
+                RemainningPTLabel.Text = (TotalPersonal - takenPersonal).ToString();
+
+                int totalInvitation = RegisteredCard.GetTotalInvitation(memberId, out errorMsg);
+                int takenInvitation = RegisteredCard.GetOldInvitation(memberId, out errorMsg);
+                RemainingInvitationLabel.Text = (totalInvitation - takenInvitation).ToString();
+
+
+                StatusLabel.ForeColor = Color.Black;
+                try
                 {
-                    StatusLabel.Text = "not valid : signed before today";
-                    StatusLabel.BackColor = Color.Red;
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\notvalid.wav");
-                    player.Play();
-                }
-                else if (endDate > DateTime.Now && startDate <= DateTime.Now)
-                {
-                    StatusLabel.Text = "valid";
-                    StatusLabel.BackColor = Color.Green;
-                    bool success = MemberSignIn.InsertNewSignIn(memberId, registeredCardID, out errorMsg);
-                    if (!success)
-                        MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (MemberSignIn.SignInBefore(memberId, registeredCardID, out errorMsg))
+                    {
+                        StatusLabel.Text = "not valid : signed before today";
+                        StatusLabel.BackColor = Color.Red;
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\notvalid.wav");
+                        player.Play();
+                    }
+                    else if (endDate > DateTime.Now && startDate <= DateTime.Now)
+                    {
+                        StatusLabel.Text = "valid";
+                        StatusLabel.BackColor = Color.Green;
+                        bool success = MemberSignIn.InsertNewSignIn(memberId, registeredCardID, out errorMsg);
+                        if (!success)
+                            MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //else
+                        //    MessageBox.Show("inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\valid.wav");
+                        player.Play();
+                    }
                     else
-                        MessageBox.Show("inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\valid.wav");
-                    player.Play();
+                    {
+                        StatusLabel.Text = "not valid : not registered";
+                        StatusLabel.BackColor = Color.Red;
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\notvalid.wav");
+                        player.Play();
+
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    StatusLabel.Text = "not valid : not registered";
-                    StatusLabel.BackColor = Color.Red;
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\notvalid.wav");
-                    player.Play();
 
                 }
-            }
-            catch (Exception ex)
-            {
-
+                finally
+                {
+                    ScannedBarcodeTextBox.Text = "";
+                }
             }
         }
     }

@@ -32,18 +32,8 @@ namespace MonstersGYM
 
         private void ExtendRegisterationUserControl_Load(object sender, EventArgs e)
         {
-            string errorMsg = "";
-            List<string> Names = MemberProfile.GetAllMembersNames(out errorMsg);
-            foreach (var name in Names)
-            {
-                long memberId = MemberProfile.GetMemberId(name, out errorMsg);
-                if (!RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg))
-                    coll.Add(name);
-            }
-            NamesTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
-            NamesTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            NamesTextBox.AutoCompleteCustomSource = coll;
 
+            LoadAllMembers();
             radioButton2.Checked = true;
 
             comboBox1.Items.Add("1");
@@ -52,7 +42,20 @@ namespace MonstersGYM
             comboBox1.Items.Add("9");
             comboBox1.Items.Add("12");
         }
-
+        public void LoadAllMembers()
+        {
+            string errorMsg = "";
+            List<string> Names = MemberProfile.GetAllMembersNames(out errorMsg);
+            foreach (var name in Names)
+            {
+                long memberId = MemberProfile.GetMemberId(name, out errorMsg);
+                if (!RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg) && !coll.Contains(name))
+                    coll.Add(name);
+            }
+            NamesTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            NamesTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            NamesTextBox.AutoCompleteCustomSource = coll;
+        }
         private void NamesTextBox_TextChanged(object sender, EventArgs e)
         {
             string errorMsg = "";
@@ -91,7 +94,7 @@ namespace MonstersGYM
         {
             if (comboBox1.SelectedItem == null)
             {
-                MessageBox.Show("Select duration", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر المدة أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (OldBarcodeLabel.Text == ScannedBarcodeTextBox.Text)
@@ -125,7 +128,7 @@ namespace MonstersGYM
                 }
             }
 
-            DialogResult result = MessageBox.Show("price = " + TotalPrice.ToString(), "Continue ?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("السعر : " + TotalPrice.ToString(), "هل تريد الأستمرار ؟", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.Cancel)
                 return;
             else
@@ -133,7 +136,7 @@ namespace MonstersGYM
                 bool active = Cards.IsCardOut(usedCardBarcode, out errorMsg);
                 if (active && !UseSameCardRadioButton.Checked)
                 {
-                    MessageBox.Show("card registed before", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("تم مسح كارت مستخدم من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 long memberId = MemberProfile.GetMemberId(NamesTextBox.Text, out errorMsg);
@@ -156,9 +159,9 @@ namespace MonstersGYM
                         Cards.UnRegisterCard(OldBarcodeLabel.Text, out errorMsg);
                 }
                 if (!success)
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show("inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("تم تجديد الأشتراك بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
         }

@@ -30,7 +30,7 @@ namespace MonstersGYM
             bool success = UserAccount.CheckLogIn(UserNameTextBox.Text, PasswordTextBox.Text, out errorMsg);
             if (!success)
             {
-                var result = MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var result = MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (result == DialogResult.OK)
                     return;
             }
@@ -40,7 +40,7 @@ namespace MonstersGYM
                 User.CurrentUser = currentUser;
                 success = Log.InsertLogIn(out errorMsg);
                 if (!success)
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
                     UserNameTextBox.Text = "";

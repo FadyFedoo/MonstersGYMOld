@@ -267,20 +267,25 @@
             this.newMemberProfileUserControl1.Name = "newMemberProfileUserControl1";
             this.newMemberProfileUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.newMemberProfileUserControl1.TabIndex = 16;
+            this.newMemberProfileUserControl1.Load += new System.EventHandler(this.newMemberProfileUserControl1_Load);
+            this.newMemberProfileUserControl1.VisibleChanged += new System.EventHandler(this.newMemberProfileUserControl1_Load);
+            this.newMemberProfileUserControl1.Enter += new System.EventHandler(this.newMemberProfileUserControl1_Enter);
             // 
             // extendRegisterationUserControl1
             // 
-            this.extendRegisterationUserControl1.Location = new System.Drawing.Point(201, 61);
+            this.extendRegisterationUserControl1.Location = new System.Drawing.Point(200, 61);
             this.extendRegisterationUserControl1.Name = "extendRegisterationUserControl1";
             this.extendRegisterationUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.extendRegisterationUserControl1.TabIndex = 17;
+            this.extendRegisterationUserControl1.Enter += new System.EventHandler(this.extendRegisterationUserControl1_Enter);
             // 
             // reservationUserControl1
             // 
-            this.reservationUserControl1.Location = new System.Drawing.Point(201, 61);
+            this.reservationUserControl1.Location = new System.Drawing.Point(200, 61);
             this.reservationUserControl1.Name = "reservationUserControl1";
             this.reservationUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.reservationUserControl1.TabIndex = 18;
+            this.reservationUserControl1.Enter += new System.EventHandler(this.reservationUserControl1_Enter);
             // 
             // cardExchangeUserControl1
             // 
@@ -288,6 +293,8 @@
             this.cardExchangeUserControl1.Name = "cardExchangeUserControl1";
             this.cardExchangeUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.cardExchangeUserControl1.TabIndex = 19;
+            this.cardExchangeUserControl1.Load += new System.EventHandler(this.cardExchangeUserControl1_Load);
+            this.cardExchangeUserControl1.Enter += new System.EventHandler(this.cardExchangeUserControl1_Enter);
             // 
             // ReceptionistOptionsForm
             // 

@@ -32,15 +32,15 @@ namespace MonstersGYM
             bool isExist = Trainers.IsExist(NameTextBox.Text, out errorMsg);
             if (isExist)
             {
-                MessageBox.Show("exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("تم إضافة الاسم من قبل.", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 bool success = Trainers.InsertNewTrainer(NameTextBox.Text, out errorMsg);
                 if (success)
-                    MessageBox.Show("inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("تم إضافة المدرب بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }

@@ -384,6 +384,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="img_20210421_234203_129_Tz9_icon.ico" />
+    <None Include="Resources\Login.png" />
     <None Include="Resources\Capture1.png" />
     <None Include="Resources\Capture.bmp" />
     <Content Include="Resources\Capture.png" />

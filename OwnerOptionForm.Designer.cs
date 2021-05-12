@@ -242,10 +242,11 @@
             this.addCardsUserControl1.Name = "addCardsUserControl1";
             this.addCardsUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.addCardsUserControl1.TabIndex = 11;
+            this.addCardsUserControl1.Enter += new System.EventHandler(this.addCardsUserControl1_Enter);
             // 
             // addTrainerUserControl1
             // 
-            this.addTrainerUserControl1.Location = new System.Drawing.Point(201, 61);
+            this.addTrainerUserControl1.Location = new System.Drawing.Point(200, 99);
             this.addTrainerUserControl1.Name = "addTrainerUserControl1";
             this.addTrainerUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.addTrainerUserControl1.TabIndex = 12;
@@ -259,28 +260,28 @@
             // 
             // collectIncomeUserControl1
             // 
-            this.collectIncomeUserControl1.Location = new System.Drawing.Point(202, 62);
+            this.collectIncomeUserControl1.Location = new System.Drawing.Point(201, 61);
             this.collectIncomeUserControl1.Name = "collectIncomeUserControl1";
             this.collectIncomeUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.collectIncomeUserControl1.TabIndex = 14;
             // 
             // newAccountUserControl1
             // 
-            this.newAccountUserControl1.Location = new System.Drawing.Point(201, 61);
+            this.newAccountUserControl1.Location = new System.Drawing.Point(200, 61);
             this.newAccountUserControl1.Name = "newAccountUserControl1";
             this.newAccountUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.newAccountUserControl1.TabIndex = 15;
             // 
             // reportsMainUserControl1
             // 
-            this.reportsMainUserControl1.Location = new System.Drawing.Point(201, 61);
+            this.reportsMainUserControl1.Location = new System.Drawing.Point(200, 61);
             this.reportsMainUserControl1.Name = "reportsMainUserControl1";
             this.reportsMainUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.reportsMainUserControl1.TabIndex = 16;
             // 
             // changeInfoUserControl1
             // 
-            this.changeInfoUserControl1.Location = new System.Drawing.Point(202, 62);
+            this.changeInfoUserControl1.Location = new System.Drawing.Point(201, 61);
             this.changeInfoUserControl1.Name = "changeInfoUserControl1";
             this.changeInfoUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.changeInfoUserControl1.TabIndex = 17;

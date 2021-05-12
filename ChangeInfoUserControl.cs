@@ -29,7 +29,7 @@ namespace MonstersGYM
             if (User.CurrentUser.UserName != UserNameTextBox.Text)
                 exist = UserAccount.IsExist(UserNameTextBox.Text, out errorMsg);
             if (exist)
-                MessageBox.Show("exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("أسم المستخدم موجود من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 bool success = UserAccount.UpdateInfo(NameTextBox.Text, UserNameTextBox.Text, PasswordTextBox.Text, out errorMsg);
@@ -37,18 +37,18 @@ namespace MonstersGYM
                 {
                     User currentUser = UserAccount.LoadUser(UserNameTextBox.Text, out errorMsg);
                     User.CurrentUser = currentUser;
-                    MessageBox.Show("updated", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("تم تعديل البيانات بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     load();
                 }
                 else
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
 
         private void ChangeInfoUserControl_Load(object sender, EventArgs e)
         {
-            //load();
+            load();
         }
         void load()
         {

@@ -32,7 +32,7 @@ namespace MonstersGYM
             string errorMsg = "";
             List<User> Users = UserAccount.LoadAllUsers(out errorMsg);
             if (!string.IsNullOrEmpty(errorMsg))
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 dataGridView1.DataSource = Users;
@@ -50,13 +50,13 @@ namespace MonstersGYM
                 if (success)
                 {
                     LoadAllUsers();
-                    MessageBox.Show("Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("تم حذف المستخدم بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("select one record", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر مستخدم واحد", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace MonstersGYM
             string errorMsg = "";
             bool success = UserAccount.IsExist(UserNameTextBox.Text, out errorMsg);
             if (success)
-                MessageBox.Show("Duplicate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("أسم المستخدم موجود من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 success = UserAccount.InsertNewAccount(NameTextBox.Text, UserNameTextBox.Text, PasswordTextBox.Text, UserType.Receptionist, UserStatus.Active, out errorMsg);
@@ -73,10 +73,10 @@ namespace MonstersGYM
                     UserNameTextBox.Text = "";
                     PasswordTextBox.Text = "";
                     LoadAllUsers();
-                    MessageBox.Show("Inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("تم إضافة مستخدم بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -39,13 +39,18 @@
             // LoginButton
             // 
             this.LoginButton.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LoginButton.FlatAppearance.BorderSize = 0;
+            this.LoginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LoginButton.Font = new System.Drawing.Font("Tahoma", 20F);
             this.LoginButton.ForeColor = System.Drawing.Color.Gold;
-            this.LoginButton.Location = new System.Drawing.Point(529, 58);
+            this.LoginButton.Image = global::MonstersGYM.Properties.Resources.Login;
+            this.LoginButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.LoginButton.Location = new System.Drawing.Point(644, 590);
             this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(255, 43);
+            this.LoginButton.Size = new System.Drawing.Size(86, 95);
             this.LoginButton.TabIndex = 0;
             this.LoginButton.Text = "دخول";
+            this.LoginButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.LoginButton.UseVisualStyleBackColor = false;
             this.LoginButton.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -53,7 +58,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 20F);
-            this.label1.Location = new System.Drawing.Point(962, 19);
+            this.label1.Location = new System.Drawing.Point(872, 482);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(193, 33);
             this.label1.TabIndex = 1;
@@ -63,7 +68,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 20F);
-            this.label2.Location = new System.Drawing.Point(448, 19);
+            this.label2.Location = new System.Drawing.Point(311, 482);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 33);
             this.label2.TabIndex = 2;
@@ -71,26 +76,29 @@
             // 
             // UserNameTextBox
             // 
+            this.UserNameTextBox.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserNameTextBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.UserNameTextBox.Location = new System.Drawing.Point(677, 24);
+            this.UserNameTextBox.Location = new System.Drawing.Point(857, 541);
             this.UserNameTextBox.Name = "UserNameTextBox";
-            this.UserNameTextBox.Size = new System.Drawing.Size(235, 20);
+            this.UserNameTextBox.Size = new System.Drawing.Size(235, 31);
             this.UserNameTextBox.TabIndex = 3;
             // 
             // PasswordTextBox
             // 
+            this.PasswordTextBox.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordTextBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.PasswordTextBox.Location = new System.Drawing.Point(153, 24);
+            this.PasswordTextBox.Location = new System.Drawing.Point(258, 541);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
-            this.PasswordTextBox.Size = new System.Drawing.Size(235, 20);
+            this.PasswordTextBox.Size = new System.Drawing.Size(235, 31);
             this.PasswordTextBox.TabIndex = 4;
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gold;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackgroundImage = global::MonstersGYM.Properties.Resources.NewNewLogo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1363, 697);
             this.Controls.Add(this.PasswordTextBox);
@@ -98,7 +106,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoginButton);
-            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ForeColor = System.Drawing.Color.Gold;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.Text = "Monsters GYM";

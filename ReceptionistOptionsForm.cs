@@ -20,68 +20,6 @@ namespace MonstersGYM
             this.LoginForm = LoginForm;
         }
 
-        private void WelcomeProfileButton_Click(object sender, EventArgs e)
-        {
-            WelcomeProfileForm newForm = new WelcomeProfileForm(this);
-            this.Hide();
-            newForm.Show();
-        }
-
-        private void NewMemberButton_Click(object sender, EventArgs e)
-        {
-            NewMemberProfileForm newForm = new NewMemberProfileForm(this);
-            this.Hide();
-            newForm.Show();
-        }
-
-        private void CardExchangeutton_Click(object sender, EventArgs e)
-        {
-            CardExchangeForm newForm = new CardExchangeForm(this);
-            this.Hide();
-            newForm.Show();
-        }
-
-        private void ExtentRegisterationButton_Click(object sender, EventArgs e)
-        {
-            ExtendRegisterationForm newForm = new ExtendRegisterationForm(this);
-            this.Hide();
-            newForm.Show();
-        }
-
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show("Are you Sure ? ", "Log Out", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.No)
-                return;
-            else
-            {
-                User.CurrentUser = null;
-                this.Close();
-                LoginForm.Show();
-            }
-        }
-
-        private void PersonalTrainerButton_Click(object sender, EventArgs e)
-        {
-            ReservationForm newForm = new ReservationForm(this);
-            this.Hide();
-            newForm.Show();
-        }
-
-        private void SignInButton_Click(object sender, EventArgs e)
-        {
-            SignInForm newForm = new SignInForm(this);
-            this.Hide();
-            newForm.Show();
-        }
-
-        private void ChangeInfoButton_Click(object sender, EventArgs e)
-        {
-            ChaneInfoForm newForm = new ChaneInfoForm(this);
-            this.Hide();
-            newForm.Show();
-        }
-
         private void ReceptionistOptionsForm_Load(object sender, EventArgs e)
         {
             HomeButton_Click(null, null);
@@ -89,7 +27,7 @@ namespace MonstersGYM
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Are you Sure ? ", "Log Out", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("هل تريد تسجيل الخروج ؟", "تسجيل الخروج", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No)
                 return;
             else
@@ -109,9 +47,9 @@ namespace MonstersGYM
 
         private void HomeButton_Click(object sender, EventArgs e)
         {
-            homeUserControl1.BringToFront();
             panel4.Height = 0;
             panel4.Top = 0;
+            homeUserControl1.BringToFront();
         }
 
         private void SignInButton2_Click(object sender, EventArgs e)
@@ -154,6 +92,36 @@ namespace MonstersGYM
             panel4.Height = CardExchangeutton2.Height;
             panel4.Top = CardExchangeutton2.Top;
             cardExchangeUserControl1.BringToFront();
+        }
+
+        private void newMemberProfileUserControl1_Load(object sender, EventArgs e)
+        {
+            newMemberProfileUserControl1.fillWelcomeProfile();
+        }
+
+        private void newMemberProfileUserControl1_Enter(object sender, EventArgs e)
+        {
+            newMemberProfileUserControl1.fillWelcomeProfile();
+        }
+
+        private void reservationUserControl1_Enter(object sender, EventArgs e)
+        {
+            reservationUserControl1.LoadAllMembers();
+        }
+
+        private void cardExchangeUserControl1_Enter(object sender, EventArgs e)
+        {
+            cardExchangeUserControl1.LoadAllMembers();
+        }
+
+        private void extendRegisterationUserControl1_Enter(object sender, EventArgs e)
+        {
+            extendRegisterationUserControl1.LoadAllMembers();
+        }
+
+        private void cardExchangeUserControl1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

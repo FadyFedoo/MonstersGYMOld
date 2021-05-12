@@ -27,9 +27,6 @@ namespace MonstersGYM
             panel4.Top = NewAccountButton.Top;
             newAccountUserControl1.BringToFront();
 
-            //NewAccountForm newForm = new NewAccountForm(this);
-            //this.Hide();
-            //newForm.Show();
         }
 
         private void NewCardButton_Click(object sender, EventArgs e)
@@ -38,9 +35,6 @@ namespace MonstersGYM
             panel4.Top = NewCardButton.Top;
             cardDefinitionAndDetailsUserControl1.BringToFront();
 
-            //CardDefinitionAndDetailsForm newForm = new CardDefinitionAndDetailsForm(this);
-            //this.Hide();
-            //newForm.Show();
         }
 
         private void CardRegisterationButton_Click(object sender, EventArgs e)
@@ -48,16 +42,11 @@ namespace MonstersGYM
             panel4.Height = CardRegisterationButton.Height;
             panel4.Top = CardRegisterationButton.Top;
             addCardsUserControl1.BringToFront();
-
-
-            //AddCardsForm newForm = new AddCardsForm(this);
-            //this.Hide();
-            //newForm.Show();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Are you Sure ?", "Log Out", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("هل تريد تسجيل الخروج ؟", "تسجيل الخروج", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No)
                 return;
             else
@@ -73,10 +62,6 @@ namespace MonstersGYM
             panel4.Height = SettlementButton.Height;
             panel4.Top = SettlementButton.Top;
             collectIncomeUserControl1.BringToFront();
-
-            //CollectIncomeForm newForm = new CollectIncomeForm(this);
-            //this.Hide();
-            //newForm.Show();
         }
 
         private void ReportsButton_Click(object sender, EventArgs e)
@@ -84,10 +69,6 @@ namespace MonstersGYM
             panel4.Height = ReportsButton.Height;
             panel4.Top = ReportsButton.Top;
             reportsMainUserControl1.BringToFront();
-
-            //ReportsMainForm newForm = new ReportsMainForm(this);
-            //this.Hide();
-            //newForm.Show();
         }
 
         private void ChangeInfoButton_Click(object sender, EventArgs e)
@@ -95,21 +76,14 @@ namespace MonstersGYM
             panel4.Height = ChangeInfoButton.Height;
             panel4.Top = ChangeInfoButton.Top;
             changeInfoUserControl1.BringToFront();
-
-            //ChaneInfoForm newForm = new ChaneInfoForm(this);
-            //this.Hide();
-            //newForm.Show();
         }
 
         private void AddTrainerButton_Click(object sender, EventArgs e)
         {
             panel4.Height = AddTrainerButton.Height;
             panel4.Top = AddTrainerButton.Top;
-            //addTrainerUserControl1.BringToFront();
+            addTrainerUserControl1.BringToFront();
 
-            //AddTrainerForm newForm = new AddTrainerForm(this);
-            //this.Hide();
-            //newForm.Show();
         }
 
         private void HomeButton_Click(object sender, EventArgs e)
@@ -127,6 +101,11 @@ namespace MonstersGYM
         private void changeInfoUserControl1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void addCardsUserControl1_Enter(object sender, EventArgs e)
+        {
+            addCardsUserControl1.LoadCardsName();
         }
     }
 }

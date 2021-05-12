@@ -34,24 +34,30 @@ namespace MonstersGYM
         private void ReservationUserControl_Load(object sender, EventArgs e)
         {
             string errorMsg;
+
+            LoadAllMembers();
+            var trainers = Trainers.GetAllTrainers(out errorMsg);
+            foreach (var trainer in trainers)
+            {
+                TrainersComboBox.Items.Add(trainer);
+            }
+        }
+        public void LoadAllMembers()
+        {
+            string errorMsg;
             List<string> Names = MemberProfile.GetAllMembersNames(out errorMsg);
             foreach (var name in Names)
             {
                 long memberId = MemberProfile.GetMemberId(name, out errorMsg);
                 if (RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg))
                 {
-                    coll.Add(name);
+                    if(!coll.Contains(name))
+                        coll.Add(name);
                 }
             }
             NamesTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             NamesTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             NamesTextBox.AutoCompleteCustomSource = coll;
-
-            var trainers = Trainers.GetAllTrainers(out errorMsg);
-            foreach (var trainer in trainers)
-            {
-                TrainersComboBox.Items.Add(trainer);
-            }
         }
 
         private void NamesTextBox_TextChanged(object sender, EventArgs e)
@@ -97,22 +103,22 @@ namespace MonstersGYM
             int takenPersonal = RegisteredCard.GetOldPersonal(CurrentMemberId, out errorMsg);
             if (TotalPersonal - takenPersonal <= 0)
             {
-                MessageBox.Show("not deserved", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("لا يمكن حجز مدرب شخصى للعضو", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (CurrentMemberId == -1)
             {
-                MessageBox.Show("select member", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر عضو أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (StartFromDateTimePicker.Value.Date == DateTime.Now.Date)
             {
-                MessageBox.Show("not valid ,Resrve before 24 hours", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("لا يمكن حجز مدرب شخصى فى نفس اليوم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TrainersComboBox.SelectedItem == null)
             {
-                MessageBox.Show("select trainer", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر مدرب أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             bool success = RegisteredCard.ReservePersonal(CurrentMemberId, out errorMsg);
@@ -120,23 +126,23 @@ namespace MonstersGYM
             var trainerId = Trainers.GetTrainerId(TrainersComboBox.SelectedItem.ToString(), out errorMsg);
             success = TakenPT.InsertTakenPT(CurrentMemberId, cardId, trainerId, StartFromDateTimePicker.Value, out errorMsg);
             if (!success)
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
-                MessageBox.Show("inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("تم حجز مدرب شخصى للعميل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (FreezDurationNumericUpDown.Value == 0)
             {
-                MessageBox.Show("duration < 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("مدة التجميد غير صالحة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             string errorMsg;
             DateTime endDate = RegisteredCard.GetEndDate(CurrentMemberId, out errorMsg);
             if (StartFromDateTimePicker.Value >= endDate)
             {
-                MessageBox.Show("date after end date", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("لا يمكن طلب تجميد فى الفترة المطلوبة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             bool success = RegisteredCard.ReserveFreez(CurrentMemberId, (int)FreezDurationNumericUpDown.Value, out errorMsg);
@@ -144,9 +150,9 @@ namespace MonstersGYM
             success = TakenFreez.InsertNewTakenFreez(CurrentMemberId, cardId, dateTimePicker1.Value,
                 dateTimePicker1.Value.AddDays((int)FreezDurationNumericUpDown.Value), out errorMsg);
             if (!success)
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
-                MessageBox.Show("inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("تم تجميد المدة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -164,7 +170,7 @@ namespace MonstersGYM
             availableInvitation = totalInvitation - takenInvitation;
             if (availableInvitation <= 0)
             {
-                MessageBox.Show("not valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("لا يمكن إستخدام دعوة للعميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             bool exist = WelcomeProfile.IsExist(NameTextBox.Text, out errorMsg);
@@ -174,12 +180,12 @@ namespace MonstersGYM
                 success = RegisteredCard.ReservePersonal(CurrentMemberId, out errorMsg);
                 success = RegisteredCard.ReserveInvitation(CurrentMemberId, out errorMsg);
                 if (!success)
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show("inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("تم إدخال حجز الدعوة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-                MessageBox.Show("Name exist before", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("تمت الزيارة للمدعو من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
     }

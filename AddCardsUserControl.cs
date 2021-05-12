@@ -28,7 +28,7 @@ namespace MonstersGYM
             LoadCardsName();
             LoadAllCards();
         }
-        void LoadCardsName()
+        public void LoadCardsName()
         {
             comboBox1.Items.Clear();
             string errorMsg = "";
@@ -39,7 +39,7 @@ namespace MonstersGYM
                     comboBox1.Items.Add(name);
             }
             else
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         void LoadAllCards()
         {
@@ -59,10 +59,10 @@ namespace MonstersGYM
                 textBox1.Text = "";
                 textBox1.Focus();
                 LoadAllCards();
-                MessageBox.Show("inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("تم تسجيل الكارت بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -76,13 +76,13 @@ namespace MonstersGYM
                 if (success)
                 {
                     LoadAllCards();
-                    MessageBox.Show("Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("تم حذف الكارت بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("select one record", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("من فضلك اختر كارت واحد", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

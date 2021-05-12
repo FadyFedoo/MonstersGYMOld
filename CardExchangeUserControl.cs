@@ -62,12 +62,16 @@ namespace MonstersGYM
 
         private void CardExchangeUserControl_Load(object sender, EventArgs e)
         {
+            LoadAllMembers();
+        }
+        public void LoadAllMembers()
+        {
             string errorMsg;
             List<string> Names = MemberProfile.GetAllMembersNames(out errorMsg);
             foreach (var name in Names)
             {
                 long memberId = MemberProfile.GetMemberId(name, out errorMsg);
-                if (RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg))
+                if (RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg) && !coll.Contains(name))
                     coll.Add(name);
             }
             NamesTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -88,13 +92,13 @@ namespace MonstersGYM
             string errorMsg = "";
             if (OldBarcodeLabel.Text == ScannedBarcodeTextBox.Text)
             {
-                MessageBox.Show("same card", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("تم مسح نفس الكارت", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             long cardId = Cards.GetCardId(ScannedBarcodeTextBox.Text, out errorMsg);
             if (RegisteredCard.IsRegistered(cardId, out errorMsg))
             {
-                MessageBox.Show("Card registered before", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("تم مسح كارت مسجل من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -102,7 +106,7 @@ namespace MonstersGYM
             string NewCardName = CardDefinition.GetCardName(cardHeaderId, out errorMsg);
             if (NewCardName != CardTypeLabel.Text)
             {
-                MessageBox.Show("select same card type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر نفس نوع الكارت", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -132,10 +136,10 @@ namespace MonstersGYM
                 OldBarcodeLabel.Text = "00";
                 CardTypeLabel.Text = "00";
                 NamesTextBox.Text = "";
-                MessageBox.Show("updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("تم تبديل الكارت للعميل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
     }

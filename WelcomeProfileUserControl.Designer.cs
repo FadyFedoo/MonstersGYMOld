@@ -134,6 +134,7 @@
             this.ForeColor = System.Drawing.Color.Gold;
             this.Name = "WelcomeProfileUserControl";
             this.Size = new System.Drawing.Size(1163, 635);
+            this.Load += new System.EventHandler(this.WelcomeProfileUserControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

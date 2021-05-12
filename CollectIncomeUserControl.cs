@@ -52,18 +52,22 @@ namespace MonstersGYM
             string errorMsg = "";
             if (comboBox1.SelectedItem != null)
             {
-                MessageBox.Show("select user", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر أسم مستخدم لإستلام النقدية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             var selectedUserName = comboBox1.SelectedItem.ToString();
             User currentUser = Users.FirstOrDefault(x => x.UserName == selectedUserName);
             bool success = UserIncome.CloseIncome(currentUser.ID, int.Parse(TotalIncomeTextBox.Text), out errorMsg);
             if (success)
-                MessageBox.Show("updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            {
+                dataGridView1.DataSource = null;
+                comboBox1.SelectedItem = null;
+                MessageBox.Show("تم إستلام المبلغ بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            dataGridView1.DataSource = null;
-            comboBox1.SelectedItem = null;
+            
         }
     }
 }

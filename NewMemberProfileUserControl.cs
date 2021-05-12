@@ -41,17 +41,8 @@ namespace MonstersGYM
 
         private void NewMemberProfileUserControl_Load(object sender, EventArgs e)
         {
-            string errorMsg = "";
-            List<GeneralWelcomeProfileReport> general = new List<GeneralWelcomeProfileReport>();
-            welcomeProfiles = WelcomeProfile.LoadVisitsLogsReport(-1, DateTime.MinValue, DateTime.MinValue, out general, out errorMsg);
-            foreach (var profile in welcomeProfiles)
-            {
-                coll.Add(profile.MemberName);
-            }
-            NameTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
-            NameTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            NameTextBox.AutoCompleteCustomSource = coll;
 
+            fillWelcomeProfile();
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo device in filterInfoCollection)
                 comboBox1.Items.Add(device.Name);
@@ -62,6 +53,20 @@ namespace MonstersGYM
             comboBox2.Items.Add("6");
             comboBox2.Items.Add("9");
             comboBox2.Items.Add("12");
+        }
+        public void fillWelcomeProfile()
+        {
+            string errorMsg = "";
+            List<GeneralWelcomeProfileReport> general;
+            welcomeProfiles = WelcomeProfile.LoadVisitsLogsReport(-1, DateTime.MinValue, DateTime.MinValue, out general, out errorMsg);
+            foreach (var profile in welcomeProfiles)
+            {
+                if(!coll.Contains(profile.MemberName))
+                    coll.Add(profile.MemberName);
+            }
+            NameTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            NameTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            NameTextBox.AutoCompleteCustomSource = coll;
         }
         private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
@@ -95,17 +100,17 @@ namespace MonstersGYM
         {
             if (DateTime.Now.Date > StartDateTimePicker.Value)
             {
-                MessageBox.Show("select valid date", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر تاريخ يبدأ من تاريخ اليوم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TotalPrice <= 0)
             {
-                MessageBox.Show("Can't save with value <= 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("لا يمكن الحفظ , السعر أقل من 0", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (comboBox2.SelectedItem == null)
             {
-                MessageBox.Show("select duration", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر مدة أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             string errorMsg = "";
@@ -131,7 +136,7 @@ namespace MonstersGYM
                     memberId = MemberProfile.GetMemberId(NameTextBox.Text, out errorMsg);
 
                     int cardHeaderID = Cards.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
-                    long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, int.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
+                    long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, int.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
                     int totalFreez = CardDetails.GetTotalFreez(cardDetails, out errorMsg);
                     int totalInvitation = CardDetails.GetTotalInvitation(cardDetails, out errorMsg);
                     int totalPersonal = CardDetails.GetTotalPersonal(cardDetails, out errorMsg);
@@ -149,22 +154,22 @@ namespace MonstersGYM
                         WeightNumericUpDown.Value = 50;
                         BirthDateTimePicker.Value = DateTime.Now;
                         pictureBox1.Image = null;
-                        MessageBox.Show("Inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("تم الاشتراك بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
-                        MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
-                    MessageBox.Show("Take a photo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("قم بإلتقاط صورة أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (!string.IsNullOrEmpty(errorMsg))
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (isregistedBefore)
-                MessageBox.Show("Card registed before", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("تم مسح كارت مسجل من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (exist)
-                MessageBox.Show("exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("يوجد عميل بنفس الأسم , قم بتجديد الاشتراك بدل من تسجيل عضو جديد أو قم بإضافة أسم شهرة للعميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (Used)
-                MessageBox.Show("used in this range", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("هذا الكارت مستخدم من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         public static byte[] ImageToByte2(Image img)
         {
@@ -211,6 +216,11 @@ namespace MonstersGYM
             {
                 PhoneTextBox.Text = profile.Phone;
                 AddressTextBox.Text = profile.Address;
+            }
+            else
+            {
+                PhoneTextBox.Text = "";
+                AddressTextBox.Text = "";
             }
         }
     }

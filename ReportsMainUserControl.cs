@@ -49,14 +49,7 @@ namespace MonstersGYM
             List<WelcomeProfileReport> Logs = WelcomeProfile.LoadVisitsLogsReport(userId, fromDate, toDate, out general, out errorMsg);
             dataGridView2.DataSource = Logs;
             dataGridView5.DataSource = general;
-            //if (!checkBox2.Checked)
-            //{
-            //    chart1.DataSource = general;
-
-            //    chart1.Series["WelcomeProfile"].XValueMember = "Date";
-            //    chart1.Series["WelcomeProfile"].YValueMembers = "Count";
-            //    chart1.Titles.Add("Welcome Profile");
-            //}
+            
         }
         void LoadMemberSignIn(long userId, DateTime fromDate, DateTime toDate)
         {

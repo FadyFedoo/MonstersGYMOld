@@ -33,13 +33,18 @@ namespace MonstersGYM
                     NameTextBox.Text = "";
                     AddressTextBox.Text = "";
                     PhoneTextBox.Text = "";
-                    MessageBox.Show("Inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Inserted", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("Name exist before", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("تم زيارة المدعو من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void WelcomeProfileUserControl_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

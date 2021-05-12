@@ -47,13 +47,13 @@ namespace MonstersGYM
                 {
                     FillCardsNamecomboBox();
                     CardNameTextBox.Text = "";
-                    MessageBox.Show("Inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("تم إضافة إسم الكارت بنجاح.", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("dublicate", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إسم الكارت موجود من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         void FillCardsNamecomboBox()
         {
@@ -66,7 +66,7 @@ namespace MonstersGYM
                     CardsNameComboBox.Items.Add(name);
             }
             else
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
         void LoadCardsDataGrid()
@@ -98,7 +98,7 @@ namespace MonstersGYM
             string errorMsg = "";
             if (DurationComboBox.SelectedItem == null)
             {
-                MessageBox.Show("select duration", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر المدة أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (CardsNameComboBox.SelectedItem != null)
@@ -114,21 +114,21 @@ namespace MonstersGYM
                         if (success)
                         {
                             LoadCardsDataGrid();
-                            MessageBox.Show("Inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("تم إضافة تفاصيل الكارت بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
-                            MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
                     else
-                        MessageBox.Show("Exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("تفاصيل الكارت موجودة من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
                 else
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("select card type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("أختر نوع الكارت أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -154,9 +154,9 @@ namespace MonstersGYM
                 }
             }
             if (!success)
-                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
-                MessageBox.Show("Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("تم التعديل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -178,13 +178,13 @@ namespace MonstersGYM
                 if (success)
                 {
                     LoadCardsDataGrid();
-                    MessageBox.Show("Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("تم حذف الكارت بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("select one record", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("إختر كارت واحد", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
