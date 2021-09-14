@@ -123,5 +123,22 @@ namespace MonstersGYM
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel4.Height = button2.Height;
+            panel4.Top = button2.Top;
+            memberInfoUserControl1.BringToFront();
+        }
+
+        private void memberInfoUserControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void memberInfoUserControl1_Enter(object sender, EventArgs e)
+        {
+            memberInfoUserControl1.LoadAllMembers();
+        }
     }
 }

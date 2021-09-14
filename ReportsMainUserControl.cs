@@ -20,6 +20,7 @@ namespace MonstersGYM
         IWelcomeProfile WelcomeProfile = new WelcomeProfileRepo();
         IMemberSignIn MemberSignIn = new MemberSignInRepo();
         IRegisteredCard RegisteredCard = new RegisteredCardRepo();
+        IIncomingAndExpenses IncomingAndExpenses = new IncomingAndExpensesRepo();
         IIncome Income = new IncomeRepo();
         List<MembershipReport> memberShipDetails = new List<MembershipReport>();
         List<User> users;
@@ -60,15 +61,27 @@ namespace MonstersGYM
         void LoadIncome(long userId, DateTime fromDate, DateTime toDate)
         {
             string errorMsg;
-            List<GeneralIncomeReport> general;
-            List<IncomeReport> Logs = Income.LoadIncomeReport(userId, fromDate, toDate, out general, out errorMsg);
+            List<GeneralFinanceReport> general;
+            List<FinanceReport> Logs = Income.LoadIncomeReport(userId, fromDate, toDate, out general, out errorMsg);
+
+            IncomingAndExpenses.GetFinanceReport(fromDate, toDate, ref Logs, ref general, out errorMsg);
+
             dataGridView4.DataSource = Logs;
             dataGridView6.DataSource = general;
+
+            int totalIncoming = Logs.Where(x => x.Amount > 0).Sum(x => x.Amount);
+            int totalExpenses = Logs.Where(x => x.Amount < 0).Sum(x => x.Amount);
+
+            TotalIncomingLabel.Text = totalIncoming.ToString();
+            TotalExpensesLabel.Text = (totalExpenses * -1).ToString();
+            TotalProfitLabel.Text = (totalIncoming + totalExpenses).ToString();
         }
         void LoadMemberShip(long userId, DateTime fromDate, DateTime toDate)
         {
             string errorMsg;
             List<GeneralMembershipReport> general = RegisteredCard.GetMembershipReport(userId, fromDate, toDate, out memberShipDetails, out errorMsg);
+            ActiveMemberLabel.Text =  general.Count(x => x.Active).ToString();
+            InActiveMemberLabel.Text =  general.Count(x => !x.Active).ToString();
             dataGridView7.DataSource = general;
             dataGridView8.DataSource = null;
         }
@@ -102,6 +115,8 @@ namespace MonstersGYM
 
             DateTime fromDate = checkBox1.Checked ? DateTime.MinValue.Date : dateTimePicker1.Value.Date;
             DateTime toDate = checkBox1.Checked ? DateTime.MinValue.Date : dateTimePicker2.Value.Date;
+            if (!checkBox1.Checked && fromDate == toDate)
+                toDate = toDate.AddDays(1);
             progressBar1.Value = 0;
             loadUserLogsReport(userId, fromDate, toDate);
             progressBar1.Value += 20;

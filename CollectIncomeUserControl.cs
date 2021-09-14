@@ -50,7 +50,7 @@ namespace MonstersGYM
         private void SettleButton_Click(object sender, EventArgs e)
         {
             string errorMsg = "";
-            if (comboBox1.SelectedItem != null)
+            if (comboBox1.SelectedItem == null)
             {
                 MessageBox.Show("إختر أسم مستخدم لإستلام النقدية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -62,6 +62,7 @@ namespace MonstersGYM
             {
                 dataGridView1.DataSource = null;
                 comboBox1.SelectedItem = null;
+                TotalIncomeTextBox.Text = "0";
                 MessageBox.Show("تم إستلام المبلغ بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else

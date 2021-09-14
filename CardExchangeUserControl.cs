@@ -46,7 +46,7 @@ namespace MonstersGYM
                 string CardBarcode = Cards.GetCardBarcode(CardId, out errorMsg);
 
                 OldBarcodeLabel.Text = CardBarcode;
-                CardTypeLabel.Text = cardName;
+                CardTypeLabel.Text = cardName.Trim();
             }
         }
         void loadPicture(byte[] PicFromDb)
@@ -90,7 +90,7 @@ namespace MonstersGYM
         private void SaveButton_Click(object sender, EventArgs e)
         {
             string errorMsg = "";
-            if (OldBarcodeLabel.Text == ScannedBarcodeTextBox.Text)
+            if (OldBarcodeLabel.Text.Trim() == ScannedBarcodeTextBox.Text.Trim())
             {
                 MessageBox.Show("تم مسح نفس الكارت", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -104,7 +104,7 @@ namespace MonstersGYM
 
             int cardHeaderId = Cards.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
             string NewCardName = CardDefinition.GetCardName(cardHeaderId, out errorMsg);
-            if (NewCardName != CardTypeLabel.Text)
+            if (NewCardName.Trim() != CardTypeLabel.Text.Trim())
             {
                 MessageBox.Show("إختر نفس نوع الكارت", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -130,16 +130,16 @@ namespace MonstersGYM
             success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, duration, 10, out errorMsg);
 
             if (success)
-            {
-                ScannedBarcodeTextBox.Text = "";
-                PriceTextBox.Text = "0";
-                OldBarcodeLabel.Text = "00";
-                CardTypeLabel.Text = "00";
-                NamesTextBox.Text = "";
                 MessageBox.Show("تم تبديل الكارت للعميل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
             else
                 MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            ScannedBarcodeTextBox.Text = "";
+            PriceTextBox.Text = "0";
+            OldBarcodeLabel.Text = "00";
+            CardTypeLabel.Text = "00";
+            NamesTextBox.Text = "";
+            ScannedBarcodeTextBox.Text = "";
 
         }
     }

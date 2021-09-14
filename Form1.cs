@@ -64,6 +64,12 @@ namespace MonstersGYM
         private void LoginForm_Load(object sender, EventArgs e)
         {
             this.ActiveControl = UserNameTextBox;
+            this.AcceptButton = LoginButton;  
+        }
+
+        private void LoginForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

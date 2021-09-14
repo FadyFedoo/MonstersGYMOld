@@ -61,6 +61,11 @@ namespace MonstersGYM
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(UserNameTextBox.Text) || string.IsNullOrEmpty(PasswordTextBox.Text))
+            {
+                MessageBox.Show("إدخل البيانات كاملة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string errorMsg = "";
             bool success = UserAccount.IsExist(UserNameTextBox.Text, out errorMsg);
             if (success)

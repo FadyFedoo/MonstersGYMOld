@@ -50,9 +50,9 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ScannedBarcodeTextBox = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,61 +60,67 @@
             // 
             this.RemainingInvitationLabel.AutoSize = true;
             this.RemainingInvitationLabel.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemainingInvitationLabel.Location = new System.Drawing.Point(198, 438);
+            this.RemainingInvitationLabel.Location = new System.Drawing.Point(356, 438);
             this.RemainingInvitationLabel.Name = "RemainingInvitationLabel";
             this.RemainingInvitationLabel.Size = new System.Drawing.Size(99, 30);
             this.RemainingInvitationLabel.TabIndex = 48;
             this.RemainingInvitationLabel.Text = "label13";
+            this.RemainingInvitationLabel.Click += new System.EventHandler(this.RemainingInvitationLabel_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(429, 438);
+            this.label12.Location = new System.Drawing.Point(561, 438);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(142, 30);
             this.label12.TabIndex = 47;
             this.label12.Text = "باقى من الدعوات";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // RemainningPTLabel
             // 
             this.RemainningPTLabel.AutoSize = true;
             this.RemainningPTLabel.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemainningPTLabel.Location = new System.Drawing.Point(198, 394);
+            this.RemainningPTLabel.Location = new System.Drawing.Point(356, 394);
             this.RemainningPTLabel.Name = "RemainningPTLabel";
             this.RemainningPTLabel.Size = new System.Drawing.Size(99, 30);
             this.RemainningPTLabel.TabIndex = 46;
             this.RemainningPTLabel.Text = "label11";
+            this.RemainningPTLabel.Click += new System.EventHandler(this.RemainningPTLabel_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(384, 394);
+            this.label10.Location = new System.Drawing.Point(516, 394);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(211, 30);
             this.label10.TabIndex = 45;
             this.label10.Text = "باقى من المدرب الشخصى";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // RemainingFreezLabel
             // 
             this.RemainingFreezLabel.AutoSize = true;
             this.RemainingFreezLabel.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemainingFreezLabel.Location = new System.Drawing.Point(206, 349);
+            this.RemainingFreezLabel.Location = new System.Drawing.Point(356, 349);
             this.RemainingFreezLabel.Name = "RemainingFreezLabel";
             this.RemainingFreezLabel.Size = new System.Drawing.Size(86, 30);
             this.RemainingFreezLabel.TabIndex = 44;
             this.RemainingFreezLabel.Text = "label8";
+            this.RemainingFreezLabel.Click += new System.EventHandler(this.RemainingFreezLabel_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(440, 349);
+            this.label6.Location = new System.Drawing.Point(572, 349);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 30);
             this.label6.TabIndex = 43;
             this.label6.Text = "باقى من التجميد";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // EndDateLabel
             // 
@@ -142,21 +148,23 @@
             // 
             this.TrainerNameLabel.AutoSize = true;
             this.TrainerNameLabel.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TrainerNameLabel.Location = new System.Drawing.Point(204, 300);
+            this.TrainerNameLabel.Location = new System.Drawing.Point(356, 300);
             this.TrainerNameLabel.Name = "TrainerNameLabel";
             this.TrainerNameLabel.Size = new System.Drawing.Size(86, 30);
             this.TrainerNameLabel.TabIndex = 40;
             this.TrainerNameLabel.Text = "label4";
+            this.TrainerNameLabel.Click += new System.EventHandler(this.TrainerNameLabel_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(473, 300);
+            this.label2.Location = new System.Drawing.Point(605, 300);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 30);
             this.label2.TabIndex = 39;
             this.label2.Text = "المدرب";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // StatusLabel
             // 
@@ -287,23 +295,6 @@
             this.ScannedBarcodeTextBox.TabIndex = 27;
             this.ScannedBarcodeTextBox.TextChanged += new System.EventHandler(this.ScannedBarcodeTextBox_TextChanged);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(967, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 176);
-            this.pictureBox1.TabIndex = 25;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::MonstersGYM.Properties.Resources.Logo;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.Location = new System.Drawing.Point(478, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(205, 205);
-            this.panel1.TabIndex = 49;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -313,6 +304,26 @@
             this.label8.Size = new System.Drawing.Size(74, 30);
             this.label8.TabIndex = 50;
             this.label8.Text = "الباركود";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::MonstersGYM.Properties.Resources.Logo;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Location = new System.Drawing.Point(478, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(205, 205);
+            this.panel1.TabIndex = 49;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(315, 365);
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // SignInUserControl
             // 

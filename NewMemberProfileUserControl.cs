@@ -43,16 +43,22 @@ namespace MonstersGYM
         {
 
             fillWelcomeProfile();
-            filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            foreach (FilterInfo device in filterInfoCollection)
-                comboBox1.Items.Add(device.Name);
-            comboBox1.SelectedIndex = 0;
+            fillCameraComboox();
+
+            if (comboBox1.Items.Count > 0)
+                comboBox1.SelectedIndex = 0;
 
             comboBox2.Items.Add("1");
             comboBox2.Items.Add("3");
             comboBox2.Items.Add("6");
             comboBox2.Items.Add("9");
             comboBox2.Items.Add("12");
+        }
+        void fillCameraComboox()
+        {
+            filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            foreach (FilterInfo device in filterInfoCollection)
+                comboBox1.Items.Add(device.Name);
         }
         public void fillWelcomeProfile()
         {
@@ -61,7 +67,7 @@ namespace MonstersGYM
             welcomeProfiles = WelcomeProfile.LoadVisitsLogsReport(-1, DateTime.MinValue, DateTime.MinValue, out general, out errorMsg);
             foreach (var profile in welcomeProfiles)
             {
-                if(!coll.Contains(profile.MemberName))
+                if (!coll.Contains(profile.MemberName))
                     coll.Add(profile.MemberName);
             }
             NameTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -70,15 +76,22 @@ namespace MonstersGYM
         }
         private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
+            eventArgs.Frame.RotateFlip(RotateFlipType.Rotate180FlipY);
             Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
             pictureBox1.Image = bitmap;
         }
         private void TakePhotobutton_Click(object sender, EventArgs e)
         {
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("من فضلك قم بالتأكد من توصيل الكاميرا جيدا , ثم قم بضغط زر التحديث", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (!OpenCamera)
             {
                 videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[comboBox1.SelectedIndex].MonikerString);
                 videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+
                 videoCaptureDevice.Start();
                 OpenCamera = true;
                 TakePhotobutton.Text = "التقط صورة";
@@ -123,44 +136,46 @@ namespace MonstersGYM
 
             if (!exist && !Used && !isregistedBefore)
             {
+                byte[] picture = null;
                 if (pictureBox1.Image != null)
+                    picture = ImageToByte2(pictureBox1.Image);
+                else
                 {
-                    byte[] picture = null;
-                    if (pictureBox1.Image != null)
-                        picture = ImageToByte2(pictureBox1.Image);
+                    var bmp = new Bitmap(MonstersGYM.Properties.Resources.Logo);
+                    picture = ImageToByte2(bmp);
+                }
 
-                    bool success = false;
-                    long memberId = -1;
+                bool success = false;
+                long memberId = -1;
 
-                    success = MemberProfile.InsertNewMember(NameTextBox.Text, AddressTextBox.Text, PhoneTextBox.Text, HeightNumericUpDown.Value, WeightNumericUpDown.Value, BirthDateTimePicker.Value, picture, out errorMsg);
-                    memberId = MemberProfile.GetMemberId(NameTextBox.Text, out errorMsg);
+                success = MemberProfile.InsertNewMember(NameTextBox.Text, AddressTextBox.Text, PhoneTextBox.Text, HeightNumericUpDown.Value, WeightNumericUpDown.Value
+                    , BirthDateTimePicker.Value, picture, out errorMsg);
+                memberId = MemberProfile.GetMemberId(NameTextBox.Text, out errorMsg);
 
-                    int cardHeaderID = Cards.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
-                    long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, int.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
-                    int totalFreez = CardDetails.GetTotalFreez(cardDetails, out errorMsg);
-                    int totalInvitation = CardDetails.GetTotalInvitation(cardDetails, out errorMsg);
-                    int totalPersonal = CardDetails.GetTotalPersonal(cardDetails, out errorMsg);
+                int cardHeaderID = Cards.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
+                long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, int.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
+                int totalFreez = CardDetails.GetTotalFreez(cardDetails, out errorMsg);
+                int totalInvitation = CardDetails.GetTotalInvitation(cardDetails, out errorMsg);
+                int totalPersonal = CardDetails.GetTotalPersonal(cardDetails, out errorMsg);
 
 
-                    success = RegistedCards.InsertNewRegisteredCard(memberId, cardId, CardDetailsId, 0, 0, 0, totalFreez, totalPersonal, totalInvitation,
-                        StartDateTimePicker.Value, StartDateTimePicker.Value.AddMonths(int.Parse(comboBox2.SelectedItem.ToString())), out errorMsg);
-                    success = Card.RegisterCard(ScannedBarcodeTextBox.Text, out errorMsg);
-                    success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, int.Parse(comboBox2.SelectedItem.ToString()), TotalPrice, out errorMsg);
+                success = RegistedCards.InsertNewRegisteredCard(memberId, cardId, CardDetailsId, 0, 0, 0, totalFreez, totalPersonal, totalInvitation,
+                    StartDateTimePicker.Value, StartDateTimePicker.Value.AddMonths(int.Parse(comboBox2.SelectedItem.ToString())), out errorMsg);
+                success = Card.RegisterCard(ScannedBarcodeTextBox.Text, out errorMsg);
+                success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, int.Parse(comboBox2.SelectedItem.ToString()), TotalPrice, out errorMsg);
 
-                    if (success)
-                    {
-                        NameTextBox.Text = AddressTextBox.Text = PhoneTextBox.Text = "";
-                        HeightNumericUpDown.Value = 150;
-                        WeightNumericUpDown.Value = 50;
-                        BirthDateTimePicker.Value = DateTime.Now;
-                        pictureBox1.Image = null;
-                        MessageBox.Show("تم الاشتراك بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                        MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (success)
+                {
+                    NameTextBox.Text = AddressTextBox.Text = PhoneTextBox.Text = "";
+                    HeightNumericUpDown.Value = 150;
+                    WeightNumericUpDown.Value = 50;
+                    BirthDateTimePicker.Value = DateTime.Now;
+                    pictureBox1.Image = null;
+                    MessageBox.Show("تم الاشتراك بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show("قم بإلتقاط صورة أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             else if (!string.IsNullOrEmpty(errorMsg))
                 MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -170,6 +185,9 @@ namespace MonstersGYM
                 MessageBox.Show("يوجد عميل بنفس الأسم , قم بتجديد الاشتراك بدل من تسجيل عضو جديد أو قم بإضافة أسم شهرة للعميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (Used)
                 MessageBox.Show("هذا الكارت مستخدم من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            ScannedBarcodeTextBox.Text = "";
+            textBox8.Text = "";
         }
         public static byte[] ImageToByte2(Image img)
         {
@@ -222,6 +240,27 @@ namespace MonstersGYM
                 PhoneTextBox.Text = "";
                 AddressTextBox.Text = "";
             }
+        }
+
+        private void ZoominButton_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Top = (int)(pictureBox1.Top - (pictureBox1.Height * 0.025));
+            pictureBox1.Left = (int)(pictureBox1.Left - (pictureBox1.Width * 0.025));
+            pictureBox1.Height = (int)(pictureBox1.Height + (pictureBox1.Height * 0.05));
+            pictureBox1.Width = (int)(pictureBox1.Width + (pictureBox1.Width * 0.05));
+        }
+
+        private void ZoomOutButton_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Top = (int)(pictureBox1.Top + (pictureBox1.Height * 0.025));
+            pictureBox1.Left = (int)(pictureBox1.Left + (pictureBox1.Width * 0.025));
+            pictureBox1.Height = (int)(pictureBox1.Height - (pictureBox1.Height * 0.05));
+            pictureBox1.Width = (int)(pictureBox1.Width - (pictureBox1.Width * 0.05));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            fillCameraComboox();
         }
     }
 }

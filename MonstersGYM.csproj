@@ -70,23 +70,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCardsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddCardsForm.Designer.cs">
-      <DependentUpon>AddCardsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddCardsUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AddCardsUserControl.Designer.cs">
       <DependentUpon>AddCardsUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddTrainerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddTrainerForm.Designer.cs">
-      <DependentUpon>AddTrainerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddTrainerUserControl.cs">
       <SubType>UserControl</SubType>
@@ -94,23 +82,17 @@
     <Compile Include="AddTrainerUserControl.Designer.cs">
       <DependentUpon>AddTrainerUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CardDefinitionAndDetailsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CardDefinitionAndDetailsForm.Designer.cs">
-      <DependentUpon>CardDefinitionAndDetailsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CardDefinitionAndDetailsUserControl.cs">
+    <Compile Include="CardDefinitionUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CardDefinitionAndDetailsUserControl.Designer.cs">
-      <DependentUpon>CardDefinitionAndDetailsUserControl.cs</DependentUpon>
+    <Compile Include="CardDefinitionUserControl.Designer.cs">
+      <DependentUpon>CardDefinitionUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CardExchangeForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="CardDetailsUserControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CardExchangeForm.Designer.cs">
-      <DependentUpon>CardExchangeForm.cs</DependentUpon>
+    <Compile Include="CardDetailsUserControl.Designer.cs">
+      <DependentUpon>CardDetailsUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CardExchangeUserControl.cs">
       <SubType>UserControl</SubType>
@@ -118,35 +100,17 @@
     <Compile Include="CardExchangeUserControl.Designer.cs">
       <DependentUpon>CardExchangeUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChaneInfoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChaneInfoForm.Designer.cs">
-      <DependentUpon>ChaneInfoForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChangeInfoUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ChangeInfoUserControl.Designer.cs">
       <DependentUpon>ChangeInfoUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CollectIncomeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CollectIncomeForm.Designer.cs">
-      <DependentUpon>CollectIncomeForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CollectIncomeUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CollectIncomeUserControl.Designer.cs">
       <DependentUpon>CollectIncomeUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExtendRegisterationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ExtendRegisterationForm.Designer.cs">
-      <DependentUpon>ExtendRegisterationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtendRegisterationUserControl.cs">
       <SubType>UserControl</SubType>
@@ -166,23 +130,23 @@
     <Compile Include="HomeUserControl.Designer.cs">
       <DependentUpon>HomeUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewAccountForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="IncommingAndExpensesUserControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NewAccountForm.Designer.cs">
-      <DependentUpon>NewAccountForm.cs</DependentUpon>
+    <Compile Include="IncommingAndExpensesUserControl.Designer.cs">
+      <DependentUpon>IncommingAndExpensesUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemberInfoUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MemberInfoUserControl.Designer.cs">
+      <DependentUpon>MemberInfoUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="NewAccountUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="NewAccountUserControl.Designer.cs">
       <DependentUpon>NewAccountUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NewMemberProfileForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewMemberProfileForm.Designer.cs">
-      <DependentUpon>NewMemberProfileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NewMemberProfileUserControl.cs">
       <SubType>UserControl</SubType>
@@ -209,23 +173,11 @@
     <Compile Include="ReceptionistOptionsForm.Designer.cs">
       <DependentUpon>ReceptionistOptionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportsMainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReportsMainForm.Designer.cs">
-      <DependentUpon>ReportsMainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ReportsMainUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ReportsMainUserControl.Designer.cs">
       <DependentUpon>ReportsMainUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReservationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReservationForm.Designer.cs">
-      <DependentUpon>ReservationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ReservationUserControl.cs">
       <SubType>UserControl</SubType>
@@ -233,23 +185,11 @@
     <Compile Include="ReservationUserControl.Designer.cs">
       <DependentUpon>ReservationUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="SignInForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SignInForm.Designer.cs">
-      <DependentUpon>SignInForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="SignInUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SignInUserControl.Designer.cs">
       <DependentUpon>SignInUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WelcomeProfileForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WelcomeProfileForm.Designer.cs">
-      <DependentUpon>WelcomeProfileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WelcomeProfileUserControl.cs">
       <SubType>UserControl</SubType>
@@ -257,44 +197,26 @@
     <Compile Include="WelcomeProfileUserControl.Designer.cs">
       <DependentUpon>WelcomeProfileUserControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddCardsForm.resx">
-      <DependentUpon>AddCardsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddCardsUserControl.resx">
       <DependentUpon>AddCardsUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddTrainerForm.resx">
-      <DependentUpon>AddTrainerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddTrainerUserControl.resx">
       <DependentUpon>AddTrainerUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CardDefinitionAndDetailsForm.resx">
-      <DependentUpon>CardDefinitionAndDetailsForm.cs</DependentUpon>
+    <EmbeddedResource Include="CardDefinitionUserControl.resx">
+      <DependentUpon>CardDefinitionUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CardDefinitionAndDetailsUserControl.resx">
-      <DependentUpon>CardDefinitionAndDetailsUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CardExchangeForm.resx">
-      <DependentUpon>CardExchangeForm.cs</DependentUpon>
+    <EmbeddedResource Include="CardDetailsUserControl.resx">
+      <DependentUpon>CardDetailsUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CardExchangeUserControl.resx">
       <DependentUpon>CardExchangeUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChaneInfoForm.resx">
-      <DependentUpon>ChaneInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChangeInfoUserControl.resx">
       <DependentUpon>ChangeInfoUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CollectIncomeForm.resx">
-      <DependentUpon>CollectIncomeForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CollectIncomeUserControl.resx">
       <DependentUpon>CollectIncomeUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ExtendRegisterationForm.resx">
-      <DependentUpon>ExtendRegisterationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtendRegisterationUserControl.resx">
       <DependentUpon>ExtendRegisterationUserControl.cs</DependentUpon>
@@ -308,14 +230,14 @@
     <EmbeddedResource Include="HomeUserControl.resx">
       <DependentUpon>HomeUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewAccountForm.resx">
-      <DependentUpon>NewAccountForm.cs</DependentUpon>
+    <EmbeddedResource Include="IncommingAndExpensesUserControl.resx">
+      <DependentUpon>IncommingAndExpensesUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberInfoUserControl.resx">
+      <DependentUpon>MemberInfoUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewAccountUserControl.resx">
       <DependentUpon>NewAccountUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewMemberProfileForm.resx">
-      <DependentUpon>NewMemberProfileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewMemberProfileUserControl.resx">
       <DependentUpon>NewMemberProfileUserControl.cs</DependentUpon>
@@ -331,26 +253,14 @@
     <EmbeddedResource Include="ReceptionistOptionsForm.resx">
       <DependentUpon>ReceptionistOptionsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportsMainForm.resx">
-      <DependentUpon>ReportsMainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ReportsMainUserControl.resx">
       <DependentUpon>ReportsMainUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReservationForm.resx">
-      <DependentUpon>ReservationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReservationUserControl.resx">
       <DependentUpon>ReservationUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SignInForm.resx">
-      <DependentUpon>SignInForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SignInUserControl.resx">
       <DependentUpon>SignInUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WelcomeProfileForm.resx">
-      <DependentUpon>WelcomeProfileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeProfileUserControl.resx">
       <DependentUpon>WelcomeProfileUserControl.cs</DependentUpon>
@@ -384,9 +294,14 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="img_20210421_234203_129_Tz9_icon.ico" />
+    <None Include="Resources\UpDown.png" />
+    <None Include="Resources\RefreshNew.png" />
+    <None Include="Resources\Refresh.png" />
+    <None Include="Resources\Deatails1.png" />
     <None Include="Resources\Login.png" />
     <None Include="Resources\Capture1.png" />
     <None Include="Resources\Capture.bmp" />
+    <None Include="Resources\Cancel.png" />
     <Content Include="Resources\Capture.png" />
     <None Include="Resources\OpenCamera.png" />
     <None Include="Resources\Requests.png" />

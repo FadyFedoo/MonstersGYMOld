@@ -33,7 +33,7 @@ namespace MonstersGYM
         {
             panel4.Height = NewCardButton.Height;
             panel4.Top = NewCardButton.Top;
-            cardDefinitionAndDetailsUserControl1.BringToFront();
+            cardDetailsUserControl1.BringToFront();
 
         }
 
@@ -106,6 +106,42 @@ namespace MonstersGYM
         private void addCardsUserControl1_Enter(object sender, EventArgs e)
         {
             addCardsUserControl1.LoadCardsName();
+        }
+
+        private void addTrainerUserControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void changeInfoUserControl1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NewCardButton_Enter(object sender, EventArgs e)
+        {
+            cardDetailsUserControl1.FillCardsNamecomboBox();
+            cardDetailsUserControl1.LoadCardsDataGrid();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel4.Height = CardHeaderButton.Height;
+            panel4.Top = CardHeaderButton.Top;
+            cardDefinitionUserControl1.BringToFront();
+        }
+
+        private void CardHeaderButton_Enter(object sender, EventArgs e)
+        {
+            cardDefinitionUserControl1.LoadCardHeadersAndSessions();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            panel4.Height = button1.Height;
+            panel4.Top = button1.Top;
+            incommingAndExpensesUserControl1.BringToFront();
         }
     }
 }

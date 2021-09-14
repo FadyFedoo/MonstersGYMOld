@@ -128,7 +128,10 @@ namespace MonstersGYM
             if (!success)
                 MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
+            {
+                NamesTextBox.Text = "";
                 MessageBox.Show("تم حجز مدرب شخصى للعميل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -152,7 +155,10 @@ namespace MonstersGYM
             if (!success)
                 MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
+            {
+                NamesTextBox.Text = "";
                 MessageBox.Show("تم تجميد المدة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -177,12 +183,14 @@ namespace MonstersGYM
             if (!exist)
             {
                 bool success = WelcomeProfile.InsertNewProfile(NameTextBox.Text, AddressTextBox.Text, PhoneTextBox.Text, CurrentMemberId, out errorMsg);
-                success = RegisteredCard.ReservePersonal(CurrentMemberId, out errorMsg);
                 success = RegisteredCard.ReserveInvitation(CurrentMemberId, out errorMsg);
                 if (!success)
                     MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
+                {
+                    NamesTextBox.Text = "";
                     MessageBox.Show("تم إدخال حجز الدعوة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
                 MessageBox.Show("تمت الزيارة للمدعو من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);

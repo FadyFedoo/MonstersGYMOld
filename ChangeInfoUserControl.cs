@@ -26,9 +26,9 @@ namespace MonstersGYM
         {
             string errorMsg = "";
             bool exist = false;
-            if (User.CurrentUser.UserName != UserNameTextBox.Text)
+            if (User.CurrentUser.UserName != UserNameTextBox.Text.Trim())
                 exist = UserAccount.IsExist(UserNameTextBox.Text, out errorMsg);
-            if (exist)
+            if (exist && User.CurrentUser.UserName == UserNameTextBox.Text.Trim())
                 MessageBox.Show("أسم المستخدم موجود من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
@@ -52,9 +52,9 @@ namespace MonstersGYM
         }
         void load()
         {
-            NameTextBox.Text = User.CurrentUser.Name;
-            UserNameTextBox.Text = User.CurrentUser.UserName;
-            PasswordTextBox.Text = User.CurrentUser.Password;
+            NameTextBox.Text = User.CurrentUser.Name ?? "";
+            UserNameTextBox.Text = User.CurrentUser.UserName ?? "";
+            PasswordTextBox.Text = User.CurrentUser.Password ?? "" ;
         }
     }
 }

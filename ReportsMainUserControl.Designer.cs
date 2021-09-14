@@ -56,10 +56,24 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView7 = new System.Windows.Forms.DataGridView();
             this.MemberShipTabPage = new System.Windows.Forms.TabPage();
+            this.ActiveMemberLabel = new System.Windows.Forms.Label();
+            this.InActiveMemberLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.ShowDetailsButton = new System.Windows.Forms.Button();
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SearchButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TotalIncomingLabel = new System.Windows.Forms.Label();
+            this.TotalExpensesLabel = new System.Windows.Forms.Label();
+            this.TotalProfitLabel = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.UserLogsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.WelcomeProfileTabPage.SuspendLayout();
@@ -253,6 +267,16 @@
             // IncomeTabPage
             // 
             this.IncomeTabPage.BackColor = System.Drawing.Color.Black;
+            this.IncomeTabPage.Controls.Add(this.label14);
+            this.IncomeTabPage.Controls.Add(this.label13);
+            this.IncomeTabPage.Controls.Add(this.TotalProfitLabel);
+            this.IncomeTabPage.Controls.Add(this.TotalExpensesLabel);
+            this.IncomeTabPage.Controls.Add(this.TotalIncomingLabel);
+            this.IncomeTabPage.Controls.Add(this.label9);
+            this.IncomeTabPage.Controls.Add(this.label8);
+            this.IncomeTabPage.Controls.Add(this.label7);
+            this.IncomeTabPage.Controls.Add(this.label6);
+            this.IncomeTabPage.Controls.Add(this.label5);
             this.IncomeTabPage.Controls.Add(this.dataGridView6);
             this.IncomeTabPage.Controls.Add(this.dataGridView4);
             this.IncomeTabPage.ForeColor = System.Drawing.Color.Gold;
@@ -276,10 +300,10 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView6.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView6.GridColor = System.Drawing.Color.Gold;
-            this.dataGridView6.Location = new System.Drawing.Point(19, 11);
+            this.dataGridView6.Location = new System.Drawing.Point(6, 78);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView6.Size = new System.Drawing.Size(425, 505);
+            this.dataGridView6.Size = new System.Drawing.Size(425, 384);
             this.dataGridView6.TabIndex = 2;
             // 
             // dataGridView4
@@ -295,10 +319,10 @@
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView4.GridColor = System.Drawing.Color.Gold;
-            this.dataGridView4.Location = new System.Drawing.Point(456, 11);
+            this.dataGridView4.Location = new System.Drawing.Point(454, 11);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView4.Size = new System.Drawing.Size(678, 488);
+            this.dataGridView4.Size = new System.Drawing.Size(678, 453);
             this.dataGridView4.TabIndex = 1;
             // 
             // dateTimePicker1
@@ -330,15 +354,19 @@
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView7.GridColor = System.Drawing.Color.Gold;
-            this.dataGridView7.Location = new System.Drawing.Point(40, 6);
+            this.dataGridView7.Location = new System.Drawing.Point(10, 6);
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView7.Size = new System.Drawing.Size(349, 350);
+            this.dataGridView7.Size = new System.Drawing.Size(431, 350);
             this.dataGridView7.TabIndex = 0;
             // 
             // MemberShipTabPage
             // 
             this.MemberShipTabPage.BackColor = System.Drawing.Color.Black;
+            this.MemberShipTabPage.Controls.Add(this.ActiveMemberLabel);
+            this.MemberShipTabPage.Controls.Add(this.InActiveMemberLabel);
+            this.MemberShipTabPage.Controls.Add(this.label2);
+            this.MemberShipTabPage.Controls.Add(this.label1);
             this.MemberShipTabPage.Controls.Add(this.ShowDetailsButton);
             this.MemberShipTabPage.Controls.Add(this.dataGridView8);
             this.MemberShipTabPage.Controls.Add(this.dataGridView7);
@@ -350,6 +378,42 @@
             this.MemberShipTabPage.TabIndex = 4;
             this.MemberShipTabPage.Text = "تقرير إشتراك الأعضاء";
             // 
+            // ActiveMemberLabel
+            // 
+            this.ActiveMemberLabel.AutoSize = true;
+            this.ActiveMemberLabel.Location = new System.Drawing.Point(311, 427);
+            this.ActiveMemberLabel.Name = "ActiveMemberLabel";
+            this.ActiveMemberLabel.Size = new System.Drawing.Size(19, 20);
+            this.ActiveMemberLabel.TabIndex = 21;
+            this.ActiveMemberLabel.Text = "0";
+            // 
+            // InActiveMemberLabel
+            // 
+            this.InActiveMemberLabel.AutoSize = true;
+            this.InActiveMemberLabel.Location = new System.Drawing.Point(56, 427);
+            this.InActiveMemberLabel.Name = "InActiveMemberLabel";
+            this.InActiveMemberLabel.Size = new System.Drawing.Size(19, 20);
+            this.InActiveMemberLabel.TabIndex = 20;
+            this.InActiveMemberLabel.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 366);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(137, 20);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "المشتركين الغير مفعلين";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(267, 366);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(113, 20);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "المشتركين المفعلين";
+            // 
             // ShowDetailsButton
             // 
             this.ShowDetailsButton.BackColor = System.Drawing.Color.Black;
@@ -358,7 +422,7 @@
             this.ShowDetailsButton.ForeColor = System.Drawing.Color.Gold;
             this.ShowDetailsButton.Image = global::MonstersGYM.Properties.Resources.Deatails;
             this.ShowDetailsButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ShowDetailsButton.Location = new System.Drawing.Point(219, 373);
+            this.ShowDetailsButton.Location = new System.Drawing.Point(153, 366);
             this.ShowDetailsButton.Name = "ShowDetailsButton";
             this.ShowDetailsButton.Size = new System.Drawing.Size(98, 103);
             this.ShowDetailsButton.TabIndex = 17;
@@ -421,10 +485,111 @@
             this.SearchButton.UseVisualStyleBackColor = false;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(167, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(117, 24);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "إجمالى المدفوعات";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(331, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(111, 24);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "إجمالى المدخلات";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(21, 11);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 24);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "إجمالى الربح";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(300, 12);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(17, 24);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "-";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(127, 11);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(23, 24);
+            this.label9.TabIndex = 31;
+            this.label9.Text = "=";
+            // 
+            // TotalIncomingLabel
+            // 
+            this.TotalIncomingLabel.AutoSize = true;
+            this.TotalIncomingLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalIncomingLabel.Location = new System.Drawing.Point(361, 51);
+            this.TotalIncomingLabel.Name = "TotalIncomingLabel";
+            this.TotalIncomingLabel.Size = new System.Drawing.Size(22, 24);
+            this.TotalIncomingLabel.TabIndex = 32;
+            this.TotalIncomingLabel.Text = "0";
+            // 
+            // TotalExpensesLabel
+            // 
+            this.TotalExpensesLabel.AutoSize = true;
+            this.TotalExpensesLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalExpensesLabel.Location = new System.Drawing.Point(203, 51);
+            this.TotalExpensesLabel.Name = "TotalExpensesLabel";
+            this.TotalExpensesLabel.Size = new System.Drawing.Size(22, 24);
+            this.TotalExpensesLabel.TabIndex = 33;
+            this.TotalExpensesLabel.Text = "0";
+            // 
+            // TotalProfitLabel
+            // 
+            this.TotalProfitLabel.AutoSize = true;
+            this.TotalProfitLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalProfitLabel.Location = new System.Drawing.Point(33, 51);
+            this.TotalProfitLabel.Name = "TotalProfitLabel";
+            this.TotalProfitLabel.Size = new System.Drawing.Size(22, 24);
+            this.TotalProfitLabel.TabIndex = 34;
+            this.TotalProfitLabel.Text = "0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(127, 51);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(23, 24);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "=";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(300, 51);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(17, 24);
+            this.label14.TabIndex = 36;
+            this.label14.Text = "-";
+            // 
             // ReportsMainUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label4);
@@ -435,6 +600,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.tabControl1);
+            this.ForeColor = System.Drawing.Color.Gold;
             this.Name = "ReportsMainUserControl";
             this.Size = new System.Drawing.Size(1163, 635);
             this.Load += new System.EventHandler(this.ReportsMainUserControl_Load);
@@ -446,10 +612,12 @@
             this.MemberSignInTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.IncomeTabPage.ResumeLayout(false);
+            this.IncomeTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
             this.MemberShipTabPage.ResumeLayout(false);
+            this.MemberShipTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -483,5 +651,19 @@
         private System.Windows.Forms.DataGridView dataGridView8;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Label ActiveMemberLabel;
+        private System.Windows.Forms.Label InActiveMemberLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label TotalProfitLabel;
+        private System.Windows.Forms.Label TotalExpensesLabel;
+        private System.Windows.Forms.Label TotalIncomingLabel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -49,6 +49,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.TakePhotobutton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -135,7 +136,7 @@
             // 
             this.comboBox2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(100, 454);
+            this.comboBox2.Location = new System.Drawing.Point(706, 519);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(176, 30);
             this.comboBox2.TabIndex = 43;
@@ -145,7 +146,7 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(100, 45);
+            this.comboBox1.Location = new System.Drawing.Point(99, 18);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(176, 30);
             this.comboBox1.TabIndex = 42;
@@ -155,7 +156,7 @@
             // 
             this.textBox8.Enabled = false;
             this.textBox8.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(583, 518);
+            this.textBox8.Location = new System.Drawing.Point(720, 580);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(162, 31);
             this.textBox8.TabIndex = 40;
@@ -199,7 +200,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(816, 514);
+            this.label8.Location = new System.Drawing.Point(1026, 581);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(57, 30);
             this.label8.TabIndex = 35;
@@ -209,7 +210,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(166, 421);
+            this.label7.Location = new System.Drawing.Point(1036, 519);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 30);
             this.label7.TabIndex = 34;
@@ -285,6 +286,23 @@
             this.label10.TabIndex = 51;
             this.label10.Text = "الباركود";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Gold;
+            this.button1.Image = global::MonstersGYM.Properties.Resources.RefreshNew;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.Location = new System.Drawing.Point(282, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(39, 38);
+            this.button1.TabIndex = 52;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // TakePhotobutton
             // 
             this.TakePhotobutton.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -294,7 +312,7 @@
             this.TakePhotobutton.ForeColor = System.Drawing.Color.Gold;
             this.TakePhotobutton.Image = global::MonstersGYM.Properties.Resources.OpenCamera;
             this.TakePhotobutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.TakePhotobutton.Location = new System.Drawing.Point(125, 299);
+            this.TakePhotobutton.Location = new System.Drawing.Point(134, 428);
             this.TakePhotobutton.Name = "TakePhotobutton";
             this.TakePhotobutton.Size = new System.Drawing.Size(116, 93);
             this.TakePhotobutton.TabIndex = 45;
@@ -312,7 +330,7 @@
             this.SaveButton.ForeColor = System.Drawing.Color.Gold;
             this.SaveButton.Image = global::MonstersGYM.Properties.Resources.save;
             this.SaveButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.SaveButton.Location = new System.Drawing.Point(146, 532);
+            this.SaveButton.Location = new System.Drawing.Point(388, 552);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(67, 64);
             this.SaveButton.TabIndex = 44;
@@ -323,9 +341,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(100, 106);
+            this.pictureBox1.Location = new System.Drawing.Point(45, 57);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(176, 176);
+            this.pictureBox1.Size = new System.Drawing.Size(315, 365);
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
             // 
@@ -333,6 +351,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.StartDateTimePicker);
             this.Controls.Add(this.label9);
@@ -394,5 +413,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button1;
     }
 }

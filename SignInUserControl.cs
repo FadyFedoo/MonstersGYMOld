@@ -113,7 +113,7 @@ namespace MonstersGYM
                 byte[] pic = MemberProfile.GetMemberProfile(NameLabel.Text, out errorMsg);
                 loadPicture(pic);
                 int cardHeaderId = Cards.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
-                CardTypeLabel.Text = CardDefinition.GetCardName(cardHeaderId, out errorMsg);
+                CardTypeLabel.Text = CardDefinition.GetCardName(cardHeaderId, out errorMsg).Trim();
 
                 DateTime startDate = RegisteredCard.GetStartDate(memberId, out errorMsg);
                 StartFromLabel.Text = startDate.ToShortDateString();
@@ -152,14 +152,14 @@ namespace MonstersGYM
                 {
                     if (MemberSignIn.SignInBefore(memberId, registeredCardID, out errorMsg))
                     {
-                        StatusLabel.Text = "not valid : signed before today";
+                        StatusLabel.Text = "غير مسموح , تم الدخول من قبل فى نفس اليوم";
                         StatusLabel.BackColor = Color.Red;
                         System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\notvalid.wav");
                         player.Play();
                     }
                     else if (endDate > DateTime.Now && startDate <= DateTime.Now)
                     {
-                        StatusLabel.Text = "valid";
+                        StatusLabel.Text = "مسموح بالدخول";
                         StatusLabel.BackColor = Color.Green;
                         bool success = MemberSignIn.InsertNewSignIn(memberId, registeredCardID, out errorMsg);
                         if (!success)
@@ -171,7 +171,7 @@ namespace MonstersGYM
                     }
                     else
                     {
-                        StatusLabel.Text = "not valid : not registered";
+                        StatusLabel.Text = "غير مسموح , الكارت غير مسجل أو تم إنتهاء الإشتراك";
                         StatusLabel.BackColor = Color.Red;
                         System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\notvalid.wav");
                         player.Play();
@@ -187,6 +187,61 @@ namespace MonstersGYM
                     ScannedBarcodeTextBox.Text = "";
                 }
             }
+        }
+
+        private void RemainingInvitationLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemainningPTLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemainingFreezLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TrainerNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

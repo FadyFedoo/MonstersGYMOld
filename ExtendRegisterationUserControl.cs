@@ -48,8 +48,8 @@ namespace MonstersGYM
             List<string> Names = MemberProfile.GetAllMembersNames(out errorMsg);
             foreach (var name in Names)
             {
-                long memberId = MemberProfile.GetMemberId(name, out errorMsg);
-                if (!RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg) && !coll.Contains(name))
+                //long memberId = MemberProfile.GetMemberId(name, out errorMsg);
+                if (/*!RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg) &&*/ !coll.Contains(name))
                     coll.Add(name);
             }
             NamesTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -64,6 +64,15 @@ namespace MonstersGYM
             long memberId = MemberProfile.GetMemberId(NamesTextBox.Text, out errorMsg);
             long cardId = RegisteredCard.GetLastCardID(memberId, out errorMsg);
             OldBarcodeLabel.Text = Cards.GetCardBarcode(cardId, out errorMsg);
+            bool isActive = RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg);
+            if (isActive)
+            {
+                radioButton2.Enabled = false;
+                UseSameCardRadioButton.Checked = true;
+            }
+            else
+                radioButton2.Enabled = true;
+
         }
         void loadPicture(byte[] PicFromDb)
         {
@@ -97,7 +106,7 @@ namespace MonstersGYM
                 MessageBox.Show("إختر المدة أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (OldBarcodeLabel.Text == ScannedBarcodeTextBox.Text)
+            if (OldBarcodeLabel.Text.Trim() == ScannedBarcodeTextBox.Text.Trim())
             {
                 UseSameCardRadioButton.Checked = true;
             }
@@ -127,18 +136,22 @@ namespace MonstersGYM
                     TotalPrice -= oldCardPrice;
                 }
             }
-
+            if (TotalPrice <= 0)
+            {
+                MessageBox.Show("لا يمكن تجديد الأشتراك العضو غير مسجل من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            bool active = Cards.IsCardOut(usedCardBarcode, out errorMsg);
+            if (active && !UseSameCardRadioButton.Checked)
+            {
+                MessageBox.Show("تم مسح كارت مستخدم من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             DialogResult result = MessageBox.Show("السعر : " + TotalPrice.ToString(), "هل تريد الأستمرار ؟", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.Cancel)
                 return;
             else
             {
-                bool active = Cards.IsCardOut(usedCardBarcode, out errorMsg);
-                if (active && !UseSameCardRadioButton.Checked)
-                {
-                    MessageBox.Show("تم مسح كارت مستخدم من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
                 long memberId = MemberProfile.GetMemberId(NamesTextBox.Text, out errorMsg);
                 int cardHeaderID = Cards.getCardHeaderID(usedCardBarcode, out errorMsg);
                 long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, int.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);

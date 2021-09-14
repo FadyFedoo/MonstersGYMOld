@@ -113,7 +113,7 @@
             // 
             this.CardTypeLabel.AutoSize = true;
             this.CardTypeLabel.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CardTypeLabel.Location = new System.Drawing.Point(503, 361);
+            this.CardTypeLabel.Location = new System.Drawing.Point(473, 361);
             this.CardTypeLabel.Name = "CardTypeLabel";
             this.CardTypeLabel.Size = new System.Drawing.Size(39, 30);
             this.CardTypeLabel.TabIndex = 24;
@@ -123,7 +123,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(473, 313);
+            this.label3.Location = new System.Drawing.Point(454, 305);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 30);
             this.label3.TabIndex = 23;
@@ -133,7 +133,7 @@
             // 
             this.OldBarcodeLabel.AutoSize = true;
             this.OldBarcodeLabel.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OldBarcodeLabel.Location = new System.Drawing.Point(785, 353);
+            this.OldBarcodeLabel.Location = new System.Drawing.Point(773, 361);
             this.OldBarcodeLabel.Name = "OldBarcodeLabel";
             this.OldBarcodeLabel.Size = new System.Drawing.Size(39, 30);
             this.OldBarcodeLabel.TabIndex = 22;
@@ -143,7 +143,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(746, 305);
+            this.label2.Location = new System.Drawing.Point(737, 305);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(150, 30);
             this.label2.TabIndex = 21;
@@ -161,9 +161,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(70, 233);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 176);
+            this.pictureBox1.Size = new System.Drawing.Size(315, 365);
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
             // 

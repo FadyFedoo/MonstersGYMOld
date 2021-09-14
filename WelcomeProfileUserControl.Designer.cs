@@ -36,6 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SessionCheckBox = new System.Windows.Forms.CheckBox();
+            this.SessionComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // SaveButton
@@ -46,7 +48,7 @@
             this.SaveButton.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveButton.ForeColor = System.Drawing.Color.Gold;
             this.SaveButton.Image = global::MonstersGYM.Properties.Resources.save;
-            this.SaveButton.Location = new System.Drawing.Point(549, 500);
+            this.SaveButton.Location = new System.Drawing.Point(549, 557);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(68, 63);
             this.SaveButton.TabIndex = 13;
@@ -78,6 +80,7 @@
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(280, 31);
             this.NameTextBox.TabIndex = 10;
+            this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // label3
             // 
@@ -118,11 +121,37 @@
             this.panel1.Size = new System.Drawing.Size(205, 205);
             this.panel1.TabIndex = 19;
             // 
+            // SessionCheckBox
+            // 
+            this.SessionCheckBox.AutoSize = true;
+            this.SessionCheckBox.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SessionCheckBox.Location = new System.Drawing.Point(769, 496);
+            this.SessionCheckBox.Name = "SessionCheckBox";
+            this.SessionCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.SessionCheckBox.Size = new System.Drawing.Size(58, 26);
+            this.SessionCheckBox.TabIndex = 20;
+            this.SessionCheckBox.Text = "حصة";
+            this.SessionCheckBox.UseVisualStyleBackColor = true;
+            this.SessionCheckBox.CheckedChanged += new System.EventHandler(this.SessionCheckBox_CheckedChanged);
+            // 
+            // SessionComboBox
+            // 
+            this.SessionComboBox.FormattingEnabled = true;
+            this.SessionComboBox.Items.AddRange(new object[] {
+            "رجال",
+            "سيدات"});
+            this.SessionComboBox.Location = new System.Drawing.Point(438, 496);
+            this.SessionComboBox.Name = "SessionComboBox";
+            this.SessionComboBox.Size = new System.Drawing.Size(277, 21);
+            this.SessionComboBox.TabIndex = 21;
+            // 
             // WelcomeProfileUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.SessionComboBox);
+            this.Controls.Add(this.SessionCheckBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.AddressTextBox);
@@ -150,5 +179,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox SessionCheckBox;
+        private System.Windows.Forms.ComboBox SessionComboBox;
     }
 }

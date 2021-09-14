@@ -37,6 +37,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.CountLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,6 +105,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(209, 30);
             this.comboBox1.TabIndex = 12;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox1
             // 
@@ -139,10 +144,58 @@
             this.panel1.Size = new System.Drawing.Size(205, 205);
             this.panel1.TabIndex = 18;
             // 
+            // SearchTextBox
+            // 
+            this.SearchTextBox.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchTextBox.Location = new System.Drawing.Point(120, 174);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(209, 31);
+            this.SearchTextBox.TabIndex = 19;
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.SearchButton.FlatAppearance.BorderSize = 0;
+            this.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SearchButton.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchButton.ForeColor = System.Drawing.Color.Gold;
+            this.SearchButton.Image = global::MonstersGYM.Properties.Resources.Search;
+            this.SearchButton.Location = new System.Drawing.Point(194, 92);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(74, 64);
+            this.SearchButton.TabIndex = 20;
+            this.SearchButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.SearchButton.UseVisualStyleBackColor = false;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(499, 541);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 30);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "العدد";
+            // 
+            // CountLabel
+            // 
+            this.CountLabel.AutoSize = true;
+            this.CountLabel.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountLabel.Location = new System.Drawing.Point(510, 584);
+            this.CountLabel.Name = "CountLabel";
+            this.CountLabel.Size = new System.Drawing.Size(26, 30);
+            this.CountLabel.TabIndex = 22;
+            this.CountLabel.Text = "0";
+            // 
             // AddCardsUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CountLabel);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.SearchButton);
+            this.Controls.Add(this.SearchTextBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.dataGridView1);
@@ -154,6 +207,7 @@
             this.Name = "AddCardsUserControl";
             this.Size = new System.Drawing.Size(1163, 635);
             this.Load += new System.EventHandler(this.AddCardsUserControl_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddCardsUserControl_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -170,5 +224,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox SearchTextBox;
+        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label CountLabel;
     }
 }
