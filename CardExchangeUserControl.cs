@@ -62,7 +62,7 @@ namespace MonstersGYM
 
         private void CardExchangeUserControl_Load(object sender, EventArgs e)
         {
-            LoadAllMembers();
+            //LoadAllMembers();
         }
         public void LoadAllMembers()
         {

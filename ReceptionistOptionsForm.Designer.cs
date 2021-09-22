@@ -279,20 +279,21 @@
             this.welcomeProfileUserControl1.Name = "welcomeProfileUserControl1";
             this.welcomeProfileUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.welcomeProfileUserControl1.TabIndex = 15;
+            this.welcomeProfileUserControl1.Load += new System.EventHandler(this.welcomeProfileUserControl1_Load);
+            this.welcomeProfileUserControl1.Enter += new System.EventHandler(this.welcomeProfileUserControl1_Enter);
             // 
             // newMemberProfileUserControl1
             // 
-            this.newMemberProfileUserControl1.Location = new System.Drawing.Point(202, 61);
+            this.newMemberProfileUserControl1.Location = new System.Drawing.Point(201, 61);
             this.newMemberProfileUserControl1.Name = "newMemberProfileUserControl1";
             this.newMemberProfileUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.newMemberProfileUserControl1.TabIndex = 16;
             this.newMemberProfileUserControl1.Load += new System.EventHandler(this.newMemberProfileUserControl1_Load);
-            this.newMemberProfileUserControl1.VisibleChanged += new System.EventHandler(this.newMemberProfileUserControl1_Load);
             this.newMemberProfileUserControl1.Enter += new System.EventHandler(this.newMemberProfileUserControl1_Enter);
             // 
             // extendRegisterationUserControl1
             // 
-            this.extendRegisterationUserControl1.Location = new System.Drawing.Point(200, 61);
+            this.extendRegisterationUserControl1.Location = new System.Drawing.Point(201, 61);
             this.extendRegisterationUserControl1.Name = "extendRegisterationUserControl1";
             this.extendRegisterationUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.extendRegisterationUserControl1.TabIndex = 17;
@@ -300,7 +301,7 @@
             // 
             // reservationUserControl1
             // 
-            this.reservationUserControl1.Location = new System.Drawing.Point(200, 61);
+            this.reservationUserControl1.Location = new System.Drawing.Point(201, 61);
             this.reservationUserControl1.Name = "reservationUserControl1";
             this.reservationUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.reservationUserControl1.TabIndex = 18;
@@ -312,7 +313,6 @@
             this.cardExchangeUserControl1.Name = "cardExchangeUserControl1";
             this.cardExchangeUserControl1.Size = new System.Drawing.Size(1163, 635);
             this.cardExchangeUserControl1.TabIndex = 19;
-            this.cardExchangeUserControl1.Load += new System.EventHandler(this.cardExchangeUserControl1_Load);
             this.cardExchangeUserControl1.Enter += new System.EventHandler(this.cardExchangeUserControl1_Enter);
             // 
             // memberInfoUserControl1
@@ -367,6 +367,7 @@
         private System.Windows.Forms.Button SignInButton2;
         private System.Windows.Forms.Button NewMemberButton2;
         private HomeUserControl homeUserControl1;
+        private System.Windows.Forms.Button button2;
         private ChangeInfoUserControl changeInfoUserControl1;
         private SignInUserControl signInUserControl1;
         private WelcomeProfileUserControl welcomeProfileUserControl1;
@@ -374,7 +375,6 @@
         private ExtendRegisterationUserControl extendRegisterationUserControl1;
         private ReservationUserControl reservationUserControl1;
         private CardExchangeUserControl cardExchangeUserControl1;
-        private System.Windows.Forms.Button button2;
         private MemberInfoUserControl memberInfoUserControl1;
     }
 }

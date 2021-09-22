@@ -42,7 +42,7 @@ namespace MonstersGYM
         private void NewMemberProfileUserControl_Load(object sender, EventArgs e)
         {
 
-            fillWelcomeProfile();
+            //fillWelcomeProfile();
             fillCameraComboox();
 
             if (comboBox1.Items.Count > 0)
@@ -127,7 +127,7 @@ namespace MonstersGYM
                 return;
             }
             string errorMsg = "";
-            bool exist = MemberProfile.IsExist(NameTextBox.Text, out errorMsg);
+            bool exist = MemberProfile.IsExist(NameTextBox.Text.Trim(), out errorMsg);
             int cardHeaderId = Card.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
             long CardDetailsId = CardDetails.GetCardDetailesID(cardHeaderId, int.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
             long cardId = Card.GetCardId(ScannedBarcodeTextBox.Text, out errorMsg);
@@ -148,9 +148,9 @@ namespace MonstersGYM
                 bool success = false;
                 long memberId = -1;
 
-                success = MemberProfile.InsertNewMember(NameTextBox.Text, AddressTextBox.Text, PhoneTextBox.Text, HeightNumericUpDown.Value, WeightNumericUpDown.Value
+                success = MemberProfile.InsertNewMember(NameTextBox.Text.Trim(), AddressTextBox.Text, PhoneTextBox.Text, HeightNumericUpDown.Value, WeightNumericUpDown.Value
                     , BirthDateTimePicker.Value, picture, out errorMsg);
-                memberId = MemberProfile.GetMemberId(NameTextBox.Text, out errorMsg);
+                memberId = MemberProfile.GetMemberId(NameTextBox.Text.Trim(), out errorMsg);
 
                 int cardHeaderID = Cards.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
                 long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, int.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
@@ -229,7 +229,7 @@ namespace MonstersGYM
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            var profile = welcomeProfiles.FirstOrDefault(x => x.MemberName == NameTextBox.Text);
+            var profile = welcomeProfiles.FirstOrDefault(x => x.MemberName == NameTextBox.Text.Trim());
             if (profile != null)
             {
                 PhoneTextBox.Text = profile.Phone;

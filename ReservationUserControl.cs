@@ -35,7 +35,7 @@ namespace MonstersGYM
         {
             string errorMsg;
 
-            LoadAllMembers();
+            //LoadAllMembers();
             var trainers = Trainers.GetAllTrainers(out errorMsg);
             foreach (var trainer in trainers)
             {

@@ -50,6 +50,16 @@
             this.MemberSignInTabPage = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.IncomeTabPage = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TotalProfitLabel = new System.Windows.Forms.Label();
+            this.TotalExpensesLabel = new System.Windows.Forms.Label();
+            this.TotalIncomingLabel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -64,16 +74,6 @@
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SearchButton = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.TotalIncomingLabel = new System.Windows.Forms.Label();
-            this.TotalExpensesLabel = new System.Windows.Forms.Label();
-            this.TotalProfitLabel = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.UserLogsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.WelcomeProfileTabPage.SuspendLayout();
@@ -133,7 +133,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView1.Size = new System.Drawing.Size(511, 510);
+            this.dataGridView1.Size = new System.Drawing.Size(511, 458);
             this.dataGridView1.TabIndex = 0;
             // 
             // label4
@@ -175,7 +175,7 @@
             this.dataGridView5.Location = new System.Drawing.Point(6, 9);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView5.Size = new System.Drawing.Size(401, 507);
+            this.dataGridView5.Size = new System.Drawing.Size(401, 458);
             this.dataGridView5.TabIndex = 2;
             // 
             // dataGridView2
@@ -191,10 +191,10 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.GridColor = System.Drawing.Color.Gold;
-            this.dataGridView2.Location = new System.Drawing.Point(413, 9);
+            this.dataGridView2.Location = new System.Drawing.Point(413, 6);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView2.Size = new System.Drawing.Size(732, 507);
+            this.dataGridView2.Size = new System.Drawing.Size(720, 458);
             this.dataGridView2.TabIndex = 1;
             // 
             // label3
@@ -261,7 +261,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(14, 6);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView3.Size = new System.Drawing.Size(415, 510);
+            this.dataGridView3.Size = new System.Drawing.Size(415, 458);
             this.dataGridView3.TabIndex = 1;
             // 
             // IncomeTabPage
@@ -286,6 +286,106 @@
             this.IncomeTabPage.Size = new System.Drawing.Size(1136, 470);
             this.IncomeTabPage.TabIndex = 3;
             this.IncomeTabPage.Text = "تقرير المالية";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(300, 51);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(17, 24);
+            this.label14.TabIndex = 36;
+            this.label14.Text = "-";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(127, 51);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(23, 24);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "=";
+            // 
+            // TotalProfitLabel
+            // 
+            this.TotalProfitLabel.AutoSize = true;
+            this.TotalProfitLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalProfitLabel.Location = new System.Drawing.Point(33, 51);
+            this.TotalProfitLabel.Name = "TotalProfitLabel";
+            this.TotalProfitLabel.Size = new System.Drawing.Size(22, 24);
+            this.TotalProfitLabel.TabIndex = 34;
+            this.TotalProfitLabel.Text = "0";
+            // 
+            // TotalExpensesLabel
+            // 
+            this.TotalExpensesLabel.AutoSize = true;
+            this.TotalExpensesLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalExpensesLabel.Location = new System.Drawing.Point(203, 51);
+            this.TotalExpensesLabel.Name = "TotalExpensesLabel";
+            this.TotalExpensesLabel.Size = new System.Drawing.Size(22, 24);
+            this.TotalExpensesLabel.TabIndex = 33;
+            this.TotalExpensesLabel.Text = "0";
+            // 
+            // TotalIncomingLabel
+            // 
+            this.TotalIncomingLabel.AutoSize = true;
+            this.TotalIncomingLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalIncomingLabel.Location = new System.Drawing.Point(361, 51);
+            this.TotalIncomingLabel.Name = "TotalIncomingLabel";
+            this.TotalIncomingLabel.Size = new System.Drawing.Size(22, 24);
+            this.TotalIncomingLabel.TabIndex = 32;
+            this.TotalIncomingLabel.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(127, 11);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(23, 24);
+            this.label9.TabIndex = 31;
+            this.label9.Text = "=";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(300, 12);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(17, 24);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "-";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(21, 11);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 24);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "إجمالى الربح";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(331, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(111, 24);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "إجمالى المدخلات";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(167, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(117, 24);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "إجمالى المدفوعات";
             // 
             // dataGridView6
             // 
@@ -447,7 +547,7 @@
             this.dataGridView8.Location = new System.Drawing.Point(447, 6);
             this.dataGridView8.Name = "dataGridView8";
             this.dataGridView8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView8.Size = new System.Drawing.Size(683, 492);
+            this.dataGridView8.Size = new System.Drawing.Size(683, 458);
             this.dataGridView8.TabIndex = 1;
             // 
             // tabControl1
@@ -484,106 +584,6 @@
             this.SearchButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.SearchButton.UseVisualStyleBackColor = false;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(167, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 24);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "إجمالى المدفوعات";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(331, 11);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(111, 24);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "إجمالى المدخلات";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(21, 11);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 24);
-            this.label7.TabIndex = 29;
-            this.label7.Text = "إجمالى الربح";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(300, 12);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(17, 24);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "-";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(127, 11);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(23, 24);
-            this.label9.TabIndex = 31;
-            this.label9.Text = "=";
-            // 
-            // TotalIncomingLabel
-            // 
-            this.TotalIncomingLabel.AutoSize = true;
-            this.TotalIncomingLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalIncomingLabel.Location = new System.Drawing.Point(361, 51);
-            this.TotalIncomingLabel.Name = "TotalIncomingLabel";
-            this.TotalIncomingLabel.Size = new System.Drawing.Size(22, 24);
-            this.TotalIncomingLabel.TabIndex = 32;
-            this.TotalIncomingLabel.Text = "0";
-            // 
-            // TotalExpensesLabel
-            // 
-            this.TotalExpensesLabel.AutoSize = true;
-            this.TotalExpensesLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalExpensesLabel.Location = new System.Drawing.Point(203, 51);
-            this.TotalExpensesLabel.Name = "TotalExpensesLabel";
-            this.TotalExpensesLabel.Size = new System.Drawing.Size(22, 24);
-            this.TotalExpensesLabel.TabIndex = 33;
-            this.TotalExpensesLabel.Text = "0";
-            // 
-            // TotalProfitLabel
-            // 
-            this.TotalProfitLabel.AutoSize = true;
-            this.TotalProfitLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalProfitLabel.Location = new System.Drawing.Point(33, 51);
-            this.TotalProfitLabel.Name = "TotalProfitLabel";
-            this.TotalProfitLabel.Size = new System.Drawing.Size(22, 24);
-            this.TotalProfitLabel.TabIndex = 34;
-            this.TotalProfitLabel.Text = "0";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(127, 51);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(23, 24);
-            this.label13.TabIndex = 35;
-            this.label13.Text = "=";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(300, 51);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(17, 24);
-            this.label14.TabIndex = 36;
-            this.label14.Text = "-";
             // 
             // ReportsMainUserControl
             // 

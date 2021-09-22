@@ -33,7 +33,7 @@ namespace MonstersGYM
         private void ExtendRegisterationUserControl_Load(object sender, EventArgs e)
         {
 
-            LoadAllMembers();
+            //LoadAllMembers();
             radioButton2.Checked = true;
 
             comboBox1.Items.Add("1");

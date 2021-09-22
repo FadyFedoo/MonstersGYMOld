@@ -89,7 +89,14 @@ namespace MonstersGYM
             NameTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             NameTextBox.AutoCompleteCustomSource = coll;
         }
-
+        public void LoadWelcomeProfile(long userId, DateTime fromDate, DateTime toDate)
+        {
+            string errorMsg;
+            List<GeneralWelcomeProfileReport> general;
+            List<WelcomeProfileReport> Logs = WelcomeProfile.LoadVisitsLogsReport(userId, fromDate, toDate, out general, out errorMsg);
+            var report = Logs.Select(x => new { x.IsMember, x.MemberName, x.Phone, x.Date, x.Address, x.InvitedBy }).ToList();
+            dataGridView1.DataSource = report;
+        }
         private void SessionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (SessionCheckBox.Checked)

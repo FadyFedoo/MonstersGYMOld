@@ -138,7 +138,7 @@ namespace MonstersGYM
 
         private void MemberInfoUserControl_Load(object sender, EventArgs e)
         {
-            LoadAllMembers();
+            //LoadAllMembers();
         }
         public void LoadAllMembers()
         {

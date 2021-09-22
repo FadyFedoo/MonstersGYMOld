@@ -96,7 +96,7 @@ namespace MonstersGYM
 
         private void newMemberProfileUserControl1_Load(object sender, EventArgs e)
         {
-            newMemberProfileUserControl1.fillWelcomeProfile();
+            //newMemberProfileUserControl1.fillWelcomeProfile();
         }
 
         private void newMemberProfileUserControl1_Enter(object sender, EventArgs e)
@@ -139,6 +139,16 @@ namespace MonstersGYM
         private void memberInfoUserControl1_Enter(object sender, EventArgs e)
         {
             memberInfoUserControl1.LoadAllMembers();
+        }
+
+        private void welcomeProfileUserControl1_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void welcomeProfileUserControl1_Enter(object sender, EventArgs e)
+        {
+            welcomeProfileUserControl1.LoadWelcomeProfile(User.CurrentUser.ID, DateTime.MinValue, DateTime.MinValue);
+
         }
     }
 }
