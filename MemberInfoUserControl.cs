@@ -67,62 +67,77 @@ namespace MonstersGYM
         }
         private void ScannedBarcodeTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(ScannedBarcodeTextBox.Text))
+            try
             {
-                string errorMsg = "";
+                if (!string.IsNullOrEmpty(ScannedBarcodeTextBox.Text))
+                {
+                    string errorMsg = "";
 
-                var memberInfo = MemberProfile.GetMemberInfo(ScannedBarcodeTextBox.Text, out errorMsg);
+                    var memberInfo = MemberProfile.GetMemberInfo(ScannedBarcodeTextBox.Text, out errorMsg);
 
-                NameTextBox.Text = memberInfo.Name;
-                AddressEditText.Text = memberInfo.Address;
-                PhoneEditText.Text = memberInfo.Phone;
-                BirthDateTimePicker.Value = memberInfo.BirthDate == DateTime.MinValue ? DateTime.Now : memberInfo.BirthDate;
-                HeightNumericUpDown.Value = memberInfo.Height == 0 ? HeightNumericUpDown.Minimum : memberInfo.Height;
-                WeightNumericUpDown.Value = memberInfo.Weight == 0 ? WeightNumericUpDown.Minimum : memberInfo.Weight;
+                    NameTextBox.Text = memberInfo.Name;
+                    AddressEditText.Text = memberInfo.Address;
+                    PhoneEditText.Text = memberInfo.Phone;
+                    BirthDateTimePicker.Value = memberInfo.BirthDate == DateTime.MinValue ? DateTime.Now : memberInfo.BirthDate;
+                    HeightNumericUpDown.Value = memberInfo.Height == 0 ? HeightNumericUpDown.Minimum : memberInfo.Height;
+                    WeightNumericUpDown.Value = memberInfo.Weight == 0 ? WeightNumericUpDown.Minimum : memberInfo.Weight;
 
 
 
-                var memberId = MemberProfile.GetMemberId(ScannedBarcodeTextBox.Text, out errorMsg);
-                byte[] pic = MemberProfile.GetMemberProfile(ScannedBarcodeTextBox.Text, out errorMsg);
-                loadPicture(pic);
-                long registeredCardID = RegisteredCard.GetLastCardID(memberId, out errorMsg);
+                    var memberId = MemberProfile.GetMemberId(ScannedBarcodeTextBox.Text, out errorMsg);
+                    byte[] pic = MemberProfile.GetMemberProfile(ScannedBarcodeTextBox.Text, out errorMsg);
+                    loadPicture(pic);
+                    long registeredCardID = RegisteredCard.GetCardID(memberId, out errorMsg);
 
-                int cardHeaderId = Cards.getCardHeaderID(registeredCardID, out errorMsg);
-                CardTypeLabel.Text = CardDefinition.GetCardName(cardHeaderId, out errorMsg).Trim();
+                    int cardHeaderId = Cards.getCardHeaderID(registeredCardID, out errorMsg);
+                    CardTypeLabel.Text = CardDefinition.GetCardName(cardHeaderId, out errorMsg).Trim();
 
-                DateTime startDate = RegisteredCard.GetLastStartDate(memberId, out errorMsg);
-                StartFromLabel.Text = startDate.ToShortDateString();
+                    DateTime startDate = RegisteredCard.GetStartDate(memberId, out errorMsg);
+                    StartFromLabel.Text = startDate.ToShortDateString();
 
-                DateTime endDate = RegisteredCard.GetLastEndDate(memberId, out errorMsg);
-                
-                int takenFreez = RegisteredCard.GetLastOldFreez(memberId, out errorMsg);
-                int remainingDays = (endDate - DateTime.Now.Date).Days + takenFreez;
+                    DateTime endDate = RegisteredCard.GetEndDate(memberId, out errorMsg);
 
-                if (remainingDays < 0)
-                    remainingDays = 0;
+                    int takenFreez = RegisteredCard.GetOldFreez(memberId, out errorMsg);
+                    int remainingDays = 0;
 
-                RemainingDaysLabel.Text = remainingDays.ToString() + " يوم";
+                    if (endDate != DateTime.MinValue)
+                    {
+                        endDate = endDate.AddDays(takenFreez);
+                        remainingDays = (endDate - DateTime.Now.Date).Days;
+                        endDate = endDate.AddDays(-1);
+                    }
+                    if (remainingDays < 0)
+                        remainingDays = 0;
 
-                if (endDate != DateTime.MinValue)
-                    endDate = endDate.AddDays(-1);
+                    RemainingDaysLabel.Text = remainingDays.ToString() + " يوم";
+                    EndDateLabel.Text = endDate.ToShortDateString();
 
-                EndDateLabel.Text = endDate.ToShortDateString();
+                    int totalAttendance = MemberSignIn.GetTottalAttendance(memberId, registeredCardID, out errorMsg);
 
-                int totalAttendance = MemberSignIn.GetTottalAttendance(memberId, registeredCardID, out errorMsg);
+                    AttendanceLabel.Text = totalAttendance.ToString();
 
-                AttendanceLabel.Text = totalAttendance.ToString();
+                    int totalFreez = RegisteredCard.GetTotalFreez(memberId, out errorMsg);
+                    int availableFreez = totalFreez - takenFreez;
+                    RemainingFreezLabel.Text = availableFreez.ToString();
 
-                int totalFreez = RegisteredCard.GetLastTotalFreez(memberId, out errorMsg);
-                int availableFreez = totalFreez - takenFreez;
-                RemainingFreezLabel.Text = availableFreez.ToString();
+                    int TotalPersonal = RegisteredCard.GetTotalPersonal(memberId, out errorMsg);
+                    int takenPersonal = RegisteredCard.GetOldPersonal(memberId, out errorMsg);
+                    RemainningPTLabel.Text = (TotalPersonal - takenPersonal).ToString();
 
-                int TotalPersonal = RegisteredCard.GetLastTotalPersonal(memberId, out errorMsg);
-                int takenPersonal = RegisteredCard.GetLastOldPersonal(memberId, out errorMsg);
-                RemainningPTLabel.Text = (TotalPersonal - takenPersonal).ToString();
+                    int totalInvitation = RegisteredCard.GetTotalInvitation(memberId, out errorMsg);
+                    int takenInvitation = RegisteredCard.GetOldInvitation(memberId, out errorMsg);
+                    RemainingInvitationLabel.Text = (totalInvitation - takenInvitation).ToString();
 
-                int totalInvitation = RegisteredCard.GetLastTotalInvitation(memberId, out errorMsg);
-                int takenInvitation = RegisteredCard.GetLastOldInvitation(memberId, out errorMsg);
-                RemainingInvitationLabel.Text = (totalInvitation - takenInvitation).ToString();
+                    int totalClasses = RegisteredCard.GetTotalClasses(memberId, out errorMsg);
+                    int takenClasses= RegisteredCard.GetOldClasses(memberId, out errorMsg);
+                    RemainningClasseslabel.Text = (totalClasses - takenClasses).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                string errorMsg = ex.ToString();
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
         void loadPicture(byte[] PicFromDb)
@@ -182,8 +197,8 @@ namespace MonstersGYM
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo device in filterInfoCollection)
                 comboBox1.Items.Add(device.Name);
-            if (comboBox1.Items.Count > 0)
-                comboBox1.SelectedIndex = 0;
+            //if (comboBox1.Items.Count > 0)
+            //    comboBox1.SelectedIndex = 0;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

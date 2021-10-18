@@ -33,6 +33,7 @@
             this.HomeButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MemberReportsButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.CardExchangeutton2 = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@
             this.reservationUserControl1 = new MonstersGYM.ReservationUserControl();
             this.cardExchangeUserControl1 = new MonstersGYM.CardExchangeUserControl();
             this.memberInfoUserControl1 = new MonstersGYM.MemberInfoUserControl();
+            this.memberReportsUserControl1 = new MonstersGYM.MemberReportsUserControl();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +96,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.MemberReportsButton);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.CardExchangeutton2);
@@ -110,6 +113,22 @@
             this.panel1.Size = new System.Drawing.Size(200, 697);
             this.panel1.TabIndex = 10;
             // 
+            // MemberReportsButton
+            // 
+            this.MemberReportsButton.FlatAppearance.BorderSize = 0;
+            this.MemberReportsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MemberReportsButton.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MemberReportsButton.Image = global::MonstersGYM.Properties.Resources.Reporst;
+            this.MemberReportsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MemberReportsButton.Location = new System.Drawing.Point(19, 628);
+            this.MemberReportsButton.Name = "MemberReportsButton";
+            this.MemberReportsButton.Size = new System.Drawing.Size(178, 69);
+            this.MemberReportsButton.TabIndex = 14;
+            this.MemberReportsButton.Text = "تقرير الأشتراكات";
+            this.MemberReportsButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.MemberReportsButton.UseVisualStyleBackColor = true;
+            this.MemberReportsButton.Click += new System.EventHandler(this.MemberReportsButton_Click);
+            // 
             // button2
             // 
             this.button2.FlatAppearance.BorderSize = 0;
@@ -117,7 +136,7 @@
             this.button2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = global::MonstersGYM.Properties.Resources.Deatails1;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(19, 623);
+            this.button2.Location = new System.Drawing.Point(19, 555);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(178, 69);
             this.button2.TabIndex = 13;
@@ -141,7 +160,7 @@
             this.CardExchangeutton2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CardExchangeutton2.Image = global::MonstersGYM.Properties.Resources.addCard1;
             this.CardExchangeutton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CardExchangeutton2.Location = new System.Drawing.Point(20, 530);
+            this.CardExchangeutton2.Location = new System.Drawing.Point(20, 476);
             this.CardExchangeutton2.Name = "CardExchangeutton2";
             this.CardExchangeutton2.Size = new System.Drawing.Size(178, 69);
             this.CardExchangeutton2.TabIndex = 3;
@@ -175,7 +194,7 @@
             this.WelcomeProfileButton2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WelcomeProfileButton2.Image = global::MonstersGYM.Properties.Resources.welcomeProfile;
             this.WelcomeProfileButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.WelcomeProfileButton2.Location = new System.Drawing.Point(20, 162);
+            this.WelcomeProfileButton2.Location = new System.Drawing.Point(20, 148);
             this.WelcomeProfileButton2.Name = "WelcomeProfileButton2";
             this.WelcomeProfileButton2.Size = new System.Drawing.Size(178, 69);
             this.WelcomeProfileButton2.TabIndex = 4;
@@ -191,7 +210,7 @@
             this.ExtentRegisterationButton2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExtentRegisterationButton2.Image = global::MonstersGYM.Properties.Resources.Renewal;
             this.ExtentRegisterationButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ExtentRegisterationButton2.Location = new System.Drawing.Point(20, 346);
+            this.ExtentRegisterationButton2.Location = new System.Drawing.Point(20, 312);
             this.ExtentRegisterationButton2.Name = "ExtentRegisterationButton2";
             this.ExtentRegisterationButton2.Size = new System.Drawing.Size(178, 69);
             this.ExtentRegisterationButton2.TabIndex = 7;
@@ -207,7 +226,7 @@
             this.PersonalTrainerButton2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PersonalTrainerButton2.Image = global::MonstersGYM.Properties.Resources.Requests;
             this.PersonalTrainerButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.PersonalTrainerButton2.Location = new System.Drawing.Point(20, 438);
+            this.PersonalTrainerButton2.Location = new System.Drawing.Point(20, 394);
             this.PersonalTrainerButton2.Name = "PersonalTrainerButton2";
             this.PersonalTrainerButton2.Size = new System.Drawing.Size(178, 69);
             this.PersonalTrainerButton2.TabIndex = 0;
@@ -239,7 +258,7 @@
             this.NewMemberButton2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewMemberButton2.Image = global::MonstersGYM.Properties.Resources.NewAccount1;
             this.NewMemberButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.NewMemberButton2.Location = new System.Drawing.Point(20, 253);
+            this.NewMemberButton2.Location = new System.Drawing.Point(20, 229);
             this.NewMemberButton2.Name = "NewMemberButton2";
             this.NewMemberButton2.Size = new System.Drawing.Size(178, 69);
             this.NewMemberButton2.TabIndex = 1;
@@ -324,12 +343,20 @@
             this.memberInfoUserControl1.Load += new System.EventHandler(this.memberInfoUserControl1_Load);
             this.memberInfoUserControl1.Enter += new System.EventHandler(this.memberInfoUserControl1_Enter);
             // 
+            // memberReportsUserControl1
+            // 
+            this.memberReportsUserControl1.Location = new System.Drawing.Point(201, 61);
+            this.memberReportsUserControl1.Name = "memberReportsUserControl1";
+            this.memberReportsUserControl1.Size = new System.Drawing.Size(1163, 635);
+            this.memberReportsUserControl1.TabIndex = 21;
+            // 
             // ReceptionistOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1363, 697);
+            this.Controls.Add(this.memberReportsUserControl1);
             this.Controls.Add(this.memberInfoUserControl1);
             this.Controls.Add(this.cardExchangeUserControl1);
             this.Controls.Add(this.reservationUserControl1);
@@ -346,6 +373,8 @@
             this.Name = "ReceptionistOptionsForm";
             this.Text = "Monsters GYM";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReceptionistOptionsForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ReceptionistOptionsForm_FormClosed);
             this.Load += new System.EventHandler(this.ReceptionistOptionsForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -376,5 +405,7 @@
         private ReservationUserControl reservationUserControl1;
         private CardExchangeUserControl cardExchangeUserControl1;
         private MemberInfoUserControl memberInfoUserControl1;
+        private System.Windows.Forms.Button MemberReportsButton;
+        private MemberReportsUserControl memberReportsUserControl1;
     }
 }

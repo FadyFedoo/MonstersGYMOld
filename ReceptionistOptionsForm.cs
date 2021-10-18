@@ -1,4 +1,6 @@
-﻿using MonstersGYM.Core.PocoClasses;
+﻿using MonstersGYM.Core.Interface;
+using MonstersGYM.Core.PocoClasses;
+using MonstersGYM.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,7 @@ namespace MonstersGYM
     public partial class ReceptionistOptionsForm : Form
     {
         LoginForm LoginForm;
+        IUserInAndOut userInAndOut = new UserInAndOutRepo();
         public ReceptionistOptionsForm(LoginForm LoginForm)
         {
             InitializeComponent();
@@ -32,6 +35,8 @@ namespace MonstersGYM
                 return;
             else
             {
+                string errorMsg = "";
+                bool success = userInAndOut.InsertLogOut(out errorMsg);
                 User.CurrentUser = null;
                 this.Close();
                 LoginForm.Show();
@@ -149,6 +154,24 @@ namespace MonstersGYM
         {
             welcomeProfileUserControl1.LoadWelcomeProfile(User.CurrentUser.ID, DateTime.MinValue, DateTime.MinValue);
 
+        }
+
+        private void MemberReportsButton_Click(object sender, EventArgs e)
+        {
+            panel4.Height = MemberReportsButton.Height;
+            panel4.Top = MemberReportsButton.Top;
+            memberReportsUserControl1.BringToFront();
+        }
+
+        private void ReceptionistOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+        }
+
+        private void ReceptionistOptionsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string errorMsg = "";
+            bool success = userInAndOut.InsertLogOut(out errorMsg);
+            User.CurrentUser = null;
         }
     }
 }

@@ -47,3 +47,4 @@ C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersG
 C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersGYM\obj\Release\aa-DJ\MonstersGYM.resources.dll
 C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersGYM\obj\Release\MonstersGYM.exe
 C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersGYM\obj\Release\MonstersGYM.pdb
+C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersGYM\obj\Release\MonstersGYM.MemberReportsUserControl.resources

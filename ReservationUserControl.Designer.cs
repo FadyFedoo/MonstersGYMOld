@@ -53,12 +53,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.ReserveClassButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FreezDurationNumericUpDown)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // NamesTextBox
@@ -85,6 +88,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(250, 369);
             this.tabControl1.Name = "tabControl1";
@@ -333,6 +337,34 @@
             this.panel1.Size = new System.Drawing.Size(205, 205);
             this.panel1.TabIndex = 21;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.ReserveClassButton);
+            this.tabPage4.Location = new System.Drawing.Point(4, 39);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(902, 223);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "حجز حصة";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // ReserveClassButton
+            // 
+            this.ReserveClassButton.BackColor = System.Drawing.Color.Black;
+            this.ReserveClassButton.FlatAppearance.BorderSize = 0;
+            this.ReserveClassButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ReserveClassButton.ForeColor = System.Drawing.Color.Gold;
+            this.ReserveClassButton.Image = global::MonstersGYM.Properties.Resources.save;
+            this.ReserveClassButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ReserveClassButton.Location = new System.Drawing.Point(416, 77);
+            this.ReserveClassButton.Name = "ReserveClassButton";
+            this.ReserveClassButton.Size = new System.Drawing.Size(71, 61);
+            this.ReserveClassButton.TabIndex = 11;
+            this.ReserveClassButton.Text = "حجز";
+            this.ReserveClassButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.ReserveClassButton.UseVisualStyleBackColor = false;
+            this.ReserveClassButton.Click += new System.EventHandler(this.ReserveClassButton_Click);
+            // 
             // ReservationUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,6 +386,7 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,5 +419,7 @@
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button ReserveClassButton;
     }
 }

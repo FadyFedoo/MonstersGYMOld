@@ -48,6 +48,7 @@ namespace MonstersGYM
             if (comboBox1.Items.Count > 0)
                 comboBox1.SelectedIndex = 0;
 
+            comboBox2.Items.Add("0.5");
             comboBox2.Items.Add("1");
             comboBox2.Items.Add("3");
             comboBox2.Items.Add("6");
@@ -129,7 +130,7 @@ namespace MonstersGYM
             string errorMsg = "";
             bool exist = MemberProfile.IsExist(NameTextBox.Text.Trim(), out errorMsg);
             int cardHeaderId = Card.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
-            long CardDetailsId = CardDetails.GetCardDetailesID(cardHeaderId, int.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
+            long CardDetailsId = CardDetails.GetCardDetailesID(cardHeaderId, decimal.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
             long cardId = Card.GetCardId(ScannedBarcodeTextBox.Text, out errorMsg);
             bool Used = RegistedCards.IsCardCurrentActive(cardId, StartDateTimePicker.Value, out errorMsg);
             bool isregistedBefore = Card.IsCardOut(ScannedBarcodeTextBox.Text, out errorMsg);
@@ -153,16 +154,21 @@ namespace MonstersGYM
                 memberId = MemberProfile.GetMemberId(NameTextBox.Text.Trim(), out errorMsg);
 
                 int cardHeaderID = Cards.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
-                long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, int.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
+                long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, decimal.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
                 int totalFreez = CardDetails.GetTotalFreez(cardDetails, out errorMsg);
                 int totalInvitation = CardDetails.GetTotalInvitation(cardDetails, out errorMsg);
                 int totalPersonal = CardDetails.GetTotalPersonal(cardDetails, out errorMsg);
+                int totalClasses = CardDetails.GetTotalClasses(cardDetails, out errorMsg);
+                DateTime endDate = StartDateTimePicker.Value;
+                if (comboBox2.SelectedItem.ToString() == "0.5")
+                    endDate = endDate.AddDays(15);
+                else
+                    endDate = endDate.AddMonths(int.Parse(comboBox2.SelectedItem.ToString()));
 
-
-                success = RegistedCards.InsertNewRegisteredCard(memberId, cardId, CardDetailsId, 0, 0, 0, totalFreez, totalPersonal, totalInvitation,
-                    StartDateTimePicker.Value, StartDateTimePicker.Value.AddMonths(int.Parse(comboBox2.SelectedItem.ToString())), out errorMsg);
+                success = RegistedCards.InsertNewRegisteredCard(memberId, cardId, CardDetailsId, 0, 0, 0,0, totalFreez, totalPersonal, totalInvitation, totalClasses,
+                    StartDateTimePicker.Value, endDate, out errorMsg);
+                success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, decimal.Parse(comboBox2.SelectedItem.ToString()), TotalPrice, out errorMsg);
                 success = Card.RegisterCard(ScannedBarcodeTextBox.Text, out errorMsg);
-                success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, int.Parse(comboBox2.SelectedItem.ToString()), TotalPrice, out errorMsg);
 
                 if (success)
                 {
@@ -209,7 +215,7 @@ namespace MonstersGYM
             {
                 string errorMsg = "";
                 TotalPrice -= previousPrice;
-                int selectedMonths = int.Parse(comboBox2.SelectedItem.ToString());
+                decimal selectedMonths = decimal.Parse(comboBox2.SelectedItem.ToString());
                 int cardHeaderId = Card.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
                 previousPrice = CardDetails.GetPrice(cardHeaderId, selectedMonths, out errorMsg);
                 TotalPrice += previousPrice;

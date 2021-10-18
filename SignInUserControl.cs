@@ -118,11 +118,16 @@ namespace MonstersGYM
                 DateTime startDate = RegisteredCard.GetStartDate(memberId, out errorMsg);
                 StartFromLabel.Text = startDate.ToShortDateString();
 
-                DateTime endDate = RegisteredCard.GetEndDate(memberId, out errorMsg);
-                EndDateLabel.Text = endDate.ToShortDateString();
+                DateTime endDate = RegisteredCard.GetEndDate(memberId, out errorMsg , cardId);
                 int takenFreez = RegisteredCard.GetOldFreez(memberId, out errorMsg);
-                int remainingDays = (endDate - DateTime.Now.Date).Days + takenFreez;
+                int remainingDays = 0;
+                if (endDate != DateTime.MinValue)
+                {
+                    endDate = endDate.AddDays(takenFreez);
+                    remainingDays = (endDate - DateTime.Now.Date).Days;
+                }
 
+                EndDateLabel.Text = endDate.ToShortDateString();
                 RemainingDaysLabel.Text = remainingDays.ToString() + " يوم";
 
                 long registeredCardID = RegisteredCard.GetCardID(memberId, out errorMsg);
@@ -146,6 +151,9 @@ namespace MonstersGYM
                 int takenInvitation = RegisteredCard.GetOldInvitation(memberId, out errorMsg);
                 RemainingInvitationLabel.Text = (totalInvitation - takenInvitation).ToString();
 
+                int totalClasses = RegisteredCard.GetTotalClasses(memberId, out errorMsg);
+                int takenClasses = RegisteredCard.GetOldClasses(memberId, out errorMsg);
+                RemainningClasseslabel.Text = (totalClasses - takenClasses).ToString();
 
                 StatusLabel.ForeColor = Color.Black;
                 try
@@ -164,8 +172,6 @@ namespace MonstersGYM
                         bool success = MemberSignIn.InsertNewSignIn(memberId, registeredCardID, out errorMsg);
                         if (!success)
                             MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //else
-                        //    MessageBox.Show("inserted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\valid.wav");
                         player.Play();
                     }
@@ -240,6 +246,11 @@ namespace MonstersGYM
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SignInUserControl_KeyDown(object sender, KeyEventArgs e)
         {
 
         }

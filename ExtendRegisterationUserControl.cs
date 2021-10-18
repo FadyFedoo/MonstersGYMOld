@@ -36,6 +36,7 @@ namespace MonstersGYM
             //LoadAllMembers();
             radioButton2.Checked = true;
 
+            comboBox1.Items.Add("0.5");
             comboBox1.Items.Add("1");
             comboBox1.Items.Add("3");
             comboBox1.Items.Add("6");
@@ -62,7 +63,7 @@ namespace MonstersGYM
             byte[] PicFromDb = MemberProfile.GetMemberProfile(NamesTextBox.Text, out errorMsg);
             loadPicture(PicFromDb);
             long memberId = MemberProfile.GetMemberId(NamesTextBox.Text, out errorMsg);
-            long cardId = RegisteredCard.GetLastCardID(memberId, out errorMsg);
+            long cardId = RegisteredCard.GetCardID(memberId, out errorMsg);
             OldBarcodeLabel.Text = Cards.GetCardBarcode(cardId, out errorMsg);
             bool isActive = RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg);
             if (isActive)
@@ -119,7 +120,7 @@ namespace MonstersGYM
                 usedCardBarcode = OldBarcodeLabel.Text;
                 cardId = Cards.GetCardId(usedCardBarcode, out errorMsg);
                 int cardHeaderID = Cards.getCardHeaderID(cardId, out errorMsg);
-                TotalPrice = CardDetails.GetPrice(cardHeaderID, int.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
+                TotalPrice = CardDetails.GetPrice(cardHeaderID, decimal.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
             }
             else
             {
@@ -128,7 +129,7 @@ namespace MonstersGYM
                 int cardHeaderID = Cards.getCardHeaderID(usedCardBarcode, out errorMsg);
                 cardId = Cards.GetCardId(usedCardBarcode, out errorMsg);
                 TotalPrice = CardDefinition.GetCardPrice(cardHeaderID, out errorMsg);
-                TotalPrice += CardDetails.GetPrice(cardHeaderID, int.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
+                TotalPrice += CardDetails.GetPrice(cardHeaderID, decimal.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
                 if (RecievOldCardCheckBox.Checked)
                 {
                     int oldCardHeaderId = Cards.getCardHeaderID(OldBarcodeLabel.Text, out errorMsg);
@@ -154,22 +155,31 @@ namespace MonstersGYM
             {
                 long memberId = MemberProfile.GetMemberId(NamesTextBox.Text, out errorMsg);
                 int cardHeaderID = Cards.getCardHeaderID(usedCardBarcode, out errorMsg);
-                long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, int.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
+                long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, decimal.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
                 int totalFreez = CardDetails.GetTotalFreez(cardDetails, out errorMsg);
                 int totalInvitation = CardDetails.GetTotalInvitation(cardDetails, out errorMsg);
+                int totalClasses = CardDetails.GetTotalClasses(cardDetails, out errorMsg);
                 int totalPersonal = CardDetails.GetTotalPersonal(cardDetails, out errorMsg);
+                DateTime endDate = dateTimePicker1.Value;
+                if (comboBox1.SelectedItem.ToString() == "0.5")
+                    endDate = endDate.AddDays(15);
+                else
+                    endDate = endDate.AddMonths(int.Parse(comboBox1.SelectedItem.ToString()));
 
-                bool success = RegisteredCard.InsertNewRegisteredCard(memberId, cardId, cardDetails, 0, 0, 0, totalFreez, totalPersonal, totalInvitation
-                    , dateTimePicker1.Value, dateTimePicker1.Value.AddMonths(int.Parse(comboBox1.SelectedItem.ToString()))
+
+                bool success = RegisteredCard.InsertNewRegisteredCard(memberId, cardId, cardDetails, 0, 0, 0,0, totalFreez, totalPersonal, totalInvitation, totalClasses
+                    , dateTimePicker1.Value, endDate
                     , out errorMsg);
-
-                long registeredCardId = RegisteredCard.GetCardID(memberId, out errorMsg);
-                success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, registeredCardId, int.Parse(comboBox1.SelectedItem.ToString()), TotalPrice, out errorMsg);
-                if (!UseSameCardRadioButton.Checked)
+                if (success)
                 {
-                    Cards.RegisterCard(ScannedBarcodeTextBox.Text, out errorMsg);
-                    if (RecievOldCardCheckBox.Checked)
-                        Cards.UnRegisterCard(OldBarcodeLabel.Text, out errorMsg);
+                    long registeredCardId = RegisteredCard.GetCardID(memberId, out errorMsg);
+                    success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, registeredCardId, decimal.Parse(comboBox1.SelectedItem.ToString()), TotalPrice, out errorMsg);
+                    if (!UseSameCardRadioButton.Checked)
+                    {
+                        Cards.RegisterCard(ScannedBarcodeTextBox.Text, out errorMsg);
+                        if (RecievOldCardCheckBox.Checked)
+                            Cards.UnRegisterCard(OldBarcodeLabel.Text, out errorMsg);
+                    }
                 }
                 if (!success)
                     MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);

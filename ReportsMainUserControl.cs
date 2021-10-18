@@ -115,22 +115,28 @@ namespace MonstersGYM
 
             DateTime fromDate = checkBox1.Checked ? DateTime.MinValue.Date : dateTimePicker1.Value.Date;
             DateTime toDate = checkBox1.Checked ? DateTime.MinValue.Date : dateTimePicker2.Value.Date;
-            if (!checkBox1.Checked && fromDate == toDate)
-                toDate = toDate.AddDays(1);
+            toDate = toDate.AddDays(1);
+
             progressBar1.Value = 0;
-            loadUserLogsReport(userId, fromDate, toDate);
+
+            if(UserLogsCheckBox.Checked)
+                loadUserLogsReport(userId, fromDate, toDate);
             progressBar1.Value += 20;
 
-            LoadWelcomeProfile(userId, fromDate, toDate);
+            if(WelcomeProfileCheckBox.Checked)
+                LoadWelcomeProfile(userId, fromDate, toDate);
             progressBar1.Value += 20;
 
-            LoadMemberSignIn(userId, fromDate, toDate);
+            if(MemberSignInCheckBox.Checked)
+                LoadMemberSignIn(userId, fromDate, toDate);
             progressBar1.Value += 20;
 
-            LoadIncome(userId, fromDate, toDate);
+            if(IncomeCheckBox.Checked)
+                LoadIncome(userId, fromDate, toDate);
             progressBar1.Value += 20;
 
-            LoadMemberShip(userId, fromDate, toDate);
+            if(MemberShipCheckBox.Checked)
+                LoadMemberShip(userId, fromDate, toDate);
             progressBar1.Value += 20;
         }
 

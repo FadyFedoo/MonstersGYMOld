@@ -110,21 +110,26 @@ namespace MonstersGYM
                 return;
             }
 
-            DateTime endDate = RegisteredCard.GetEndDate(memberId, out errorMsg);
-            int duration = 0;
-            double durationInMonths = Math.Ceiling((double)((endDate - DateTime.Now).Days / 30));
+            DateTime endDate = RegisteredCard.GetEndDate(memberId, out errorMsg, cardId);
+            decimal duration = 0;
+            double DifferanceDuration = (endDate - DateTime.Now).Days ;
 
-            if (durationInMonths <= 1)
-                duration = 1;
-            else if (durationInMonths <= 3)
-                duration = 3;
-            else if (durationInMonths <= 6)
-                duration = 6;
-            else if (durationInMonths <= 9)
-                duration = 9;
-            else if (durationInMonths <= 12)
-                duration = 12;
-
+            if (DifferanceDuration <= 14)
+                duration = (decimal)0.5;
+            else
+            {
+                DifferanceDuration = Math.Ceiling((DifferanceDuration / 30));
+                if (DifferanceDuration <= 1)
+                    duration = 1;
+                else if (DifferanceDuration <= 3)
+                    duration = 3;
+                else if (DifferanceDuration <= 6)
+                    duration = 6;
+                else if (DifferanceDuration <= 9)
+                    duration = 9;
+                else if (DifferanceDuration <= 12)
+                    duration = 12;
+            }
             bool success = RegisteredCard.UpdateOldAndInsertNew(memberId, cardId, out errorMsg);
             success = Cards.RegisterCard(ScannedBarcodeTextBox.Text, out errorMsg);
             success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, duration, 10, out errorMsg);

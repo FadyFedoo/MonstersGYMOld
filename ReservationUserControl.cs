@@ -196,5 +196,34 @@ namespace MonstersGYM
                 MessageBox.Show("تمت الزيارة للمدعو من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
+
+        private void ReserveClassButton_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("هل أنت متأكد ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+                return;
+            else
+            {
+                string errorMsg;
+                int totalClasses = RegisteredCard.GetTotalClasses(CurrentMemberId, out errorMsg);
+                int takenClasses = RegisteredCard.GetOldClasses(CurrentMemberId, out errorMsg);
+
+                int availableClasses = 0;
+                availableClasses = totalClasses - takenClasses;
+                if (availableClasses <= 0)
+                {
+                    MessageBox.Show("لا يمكن حجز حصة للعضو", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                bool success = RegisteredCard.ReserveClass(CurrentMemberId, out errorMsg);
+                if (!success)
+                    MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    NamesTextBox.Text = "";
+                    MessageBox.Show("تم إدخال حجز الحصة بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
     }
 }

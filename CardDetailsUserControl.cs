@@ -28,6 +28,7 @@ namespace MonstersGYM
             FillCardsNamecomboBox();
             LoadCardsDataGrid();
 
+            DurationComboBox.Items.Add("0.5");
             DurationComboBox.Items.Add("1");
             DurationComboBox.Items.Add("3");
             DurationComboBox.Items.Add("6");
@@ -65,6 +66,7 @@ namespace MonstersGYM
                 detail.Invitation = item.Invitation;
                 detail.Personal = item.Personal;
                 detail.Freez = item.Freez;
+                detail.Classes = item.Classes;
 
                 Cards.Add(detail);
             }
@@ -89,11 +91,11 @@ namespace MonstersGYM
                 int cardId = CardDefinition.GetCardId(CardsNameComboBox.SelectedItem.ToString().Trim(), out errorMsg);
                 if (string.IsNullOrEmpty(errorMsg))
                 {
-                    bool exist = CardDetailes.IsExist(cardId, int.Parse(DurationComboBox.SelectedItem.ToString()), out errorMsg);
+                    bool exist = CardDetailes.IsExist(cardId, decimal.Parse(DurationComboBox.SelectedItem.ToString()), out errorMsg);
                     if (!exist)
                     {
-                        bool success = CardDetailes.InsertCardDetails(cardId, int.Parse(DurationComboBox.SelectedItem.ToString()), (int)FreezNumericUpDown.Value, (int)PersonalNumericUpDown.Value
-                        , (int)InvitationNumericUpDown.Value, (int)PriceNumericUpDown.Value, out errorMsg);
+                        bool success = CardDetailes.InsertCardDetails(cardId, decimal.Parse(DurationComboBox.SelectedItem.ToString()), (int)FreezNumericUpDown.Value, (int)PersonalNumericUpDown.Value
+                        , (int)InvitationNumericUpDown.Value, (int)PriceNumericUpDown.Value, (int)ClassesNumericUpDown.Value, out errorMsg);
                         if (success)
                         {
                             LoadCardsDataGrid();
@@ -121,17 +123,19 @@ namespace MonstersGYM
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 var name = row.Cells["Name"].Value as string;
-                var duration = (int)row.Cells["Duration"].Value;
+                var duration = (decimal)row.Cells["Duration"].Value;
                 int freez = (int)row.Cells["Freez"].Value;
                 var invitation = (int)row.Cells["Invitation"].Value;
                 var PT = (int)row.Cells["Personal"].Value;
                 var price = (int)row.Cells["Price"].Value;
+                var classes = (int)row.Cells["Classes"].Value;
+
 
                 if (Cards.Any(x => x.Name == name && x.Duration == duration
-                && (x.Freez != freez || x.Invitation != invitation || x.Personal != PT || x.Price != price)))
+                && (x.Freez != freez || x.Invitation != invitation || x.Personal != PT || x.Price != price || x.Classes != classes)))
                 {
                     var cardHeaderId = CardDefinition.GetCardId(name, out errorMsg);
-                    success = CardDetailes.UpdateCardDetailes(cardHeaderId, duration, freez, PT, price, invitation, out errorMsg);
+                    success = CardDetailes.UpdateCardDetailes(cardHeaderId, duration, freez, PT, price, invitation, classes, out errorMsg);
                     if (!success)
                         break;
                 }
@@ -150,14 +154,14 @@ namespace MonstersGYM
                 DataGridViewRow row = this.dataGridView1.SelectedRows[0];
                 var cardName = row.Cells["Name"].Value as string;
                 var cardId = CardDefinition.GetCardId(cardName.Trim(), out errorMsg);
-                var cardDuration = (int)row.Cells["Duration"].Value;
+                var cardDuration = (decimal)row.Cells["Duration"].Value;
                 var cardPrice = (int)row.Cells["Price"].Value;
                 var cardFreez = (int)row.Cells["Freez"].Value;
                 var cardPersonal = (int)row.Cells["Personal"].Value;
                 var cardInvitation = (int)row.Cells["Invitation"].Value;
+                var cardClasses = (int)row.Cells["Classes"].Value;
 
-
-                bool success = CardDetailes.RemoveCardDetailes(cardId, cardDuration, cardFreez, cardPersonal, cardPrice, cardInvitation, out errorMsg);
+                bool success = CardDetailes.RemoveCardDetailes(cardId, cardDuration, cardFreez, cardPersonal, cardPrice, cardInvitation, cardClasses, out errorMsg);
                 if (success)
                 {
                     LoadCardsDataGrid();
@@ -168,6 +172,16 @@ namespace MonstersGYM
             }
             else
                 MessageBox.Show("إختر كارت واحد", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void DurationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

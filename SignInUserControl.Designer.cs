@@ -53,6 +53,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.RemainningClasseslabel = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -289,7 +291,7 @@
             // ScannedBarcodeTextBox
             // 
             this.ScannedBarcodeTextBox.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScannedBarcodeTextBox.Location = new System.Drawing.Point(434, 235);
+            this.ScannedBarcodeTextBox.Location = new System.Drawing.Point(504, 240);
             this.ScannedBarcodeTextBox.Name = "ScannedBarcodeTextBox";
             this.ScannedBarcodeTextBox.Size = new System.Drawing.Size(292, 31);
             this.ScannedBarcodeTextBox.TabIndex = 27;
@@ -299,7 +301,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(808, 236);
+            this.label8.Location = new System.Drawing.Point(857, 236);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 30);
             this.label8.TabIndex = 50;
@@ -325,11 +327,33 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // RemainningClasseslabel
+            // 
+            this.RemainningClasseslabel.AutoSize = true;
+            this.RemainningClasseslabel.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemainningClasseslabel.Location = new System.Drawing.Point(356, 484);
+            this.RemainningClasseslabel.Name = "RemainningClasseslabel";
+            this.RemainningClasseslabel.Size = new System.Drawing.Size(99, 30);
+            this.RemainningClasseslabel.TabIndex = 52;
+            this.RemainningClasseslabel.Text = "label13";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(561, 484);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(148, 30);
+            this.label13.TabIndex = 51;
+            this.label13.Text = "باقى من الحصص";
+            // 
             // SignInUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.RemainningClasseslabel);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RemainingInvitationLabel);
@@ -359,6 +383,7 @@
             this.Name = "SignInUserControl";
             this.Size = new System.Drawing.Size(1163, 635);
             this.Load += new System.EventHandler(this.SignInUserControl_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SignInUserControl_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -392,5 +417,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label RemainningClasseslabel;
+        private System.Windows.Forms.Label label13;
     }
 }

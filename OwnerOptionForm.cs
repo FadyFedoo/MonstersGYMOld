@@ -1,4 +1,6 @@
-﻿using MonstersGYM.Core.PocoClasses;
+﻿using MonstersGYM.Core.Interface;
+using MonstersGYM.Core.PocoClasses;
+using MonstersGYM.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,7 @@ namespace MonstersGYM
     public partial class OwnerOptionForm : Form
     {
         LoginForm loginForm;
+        IUserInAndOut userInAndOut = new UserInAndOutRepo();
         public OwnerOptionForm(LoginForm loginForm)
         {
             InitializeComponent();
@@ -51,6 +54,8 @@ namespace MonstersGYM
                 return;
             else
             {
+                string errorMsg = "";
+                bool success = userInAndOut.InsertLogOut(out errorMsg);
                 User.CurrentUser = null;
                 this.Close();
                 loginForm.Show();
@@ -142,6 +147,13 @@ namespace MonstersGYM
             panel4.Height = button1.Height;
             panel4.Top = button1.Top;
             incommingAndExpensesUserControl1.BringToFront();
+        }
+
+        private void OwnerOptionForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string errorMsg = "";
+            bool success = userInAndOut.InsertLogOut(out errorMsg);
+            User.CurrentUser = null;
         }
     }
 }

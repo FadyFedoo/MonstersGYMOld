@@ -317,6 +317,8 @@
             // 
             // reportsMainUserControl1
             // 
+            this.reportsMainUserControl1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.reportsMainUserControl1.ForeColor = System.Drawing.Color.Gold;
             this.reportsMainUserControl1.Location = new System.Drawing.Point(201, 61);
             this.reportsMainUserControl1.Name = "reportsMainUserControl1";
             this.reportsMainUserControl1.Size = new System.Drawing.Size(1163, 635);
@@ -370,6 +372,7 @@
             this.Name = "OwnerOptionForm";
             this.Text = "Monsters GYM";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OwnerOptionForm_FormClosing);
             this.Load += new System.EventHandler(this.OwnerOptionForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

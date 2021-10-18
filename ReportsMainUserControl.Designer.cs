@@ -74,6 +74,11 @@
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SearchButton = new System.Windows.Forms.Button();
+            this.UserLogsCheckBox = new System.Windows.Forms.CheckBox();
+            this.WelcomeProfileCheckBox = new System.Windows.Forms.CheckBox();
+            this.MemberSignInCheckBox = new System.Windows.Forms.CheckBox();
+            this.IncomeCheckBox = new System.Windows.Forms.CheckBox();
+            this.MemberShipCheckBox = new System.Windows.Forms.CheckBox();
             this.UserLogsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.WelcomeProfileTabPage.SuspendLayout();
@@ -585,11 +590,76 @@
             this.SearchButton.UseVisualStyleBackColor = false;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
+            // UserLogsCheckBox
+            // 
+            this.UserLogsCheckBox.AutoSize = true;
+            this.UserLogsCheckBox.Checked = true;
+            this.UserLogsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.UserLogsCheckBox.Location = new System.Drawing.Point(1039, 107);
+            this.UserLogsCheckBox.Name = "UserLogsCheckBox";
+            this.UserLogsCheckBox.Size = new System.Drawing.Size(49, 17);
+            this.UserLogsCheckBox.TabIndex = 30;
+            this.UserLogsCheckBox.Text = "إظهار";
+            this.UserLogsCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // WelcomeProfileCheckBox
+            // 
+            this.WelcomeProfileCheckBox.AutoSize = true;
+            this.WelcomeProfileCheckBox.Checked = true;
+            this.WelcomeProfileCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.WelcomeProfileCheckBox.Location = new System.Drawing.Point(900, 107);
+            this.WelcomeProfileCheckBox.Name = "WelcomeProfileCheckBox";
+            this.WelcomeProfileCheckBox.Size = new System.Drawing.Size(49, 17);
+            this.WelcomeProfileCheckBox.TabIndex = 31;
+            this.WelcomeProfileCheckBox.Text = "إظهار";
+            this.WelcomeProfileCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // MemberSignInCheckBox
+            // 
+            this.MemberSignInCheckBox.AutoSize = true;
+            this.MemberSignInCheckBox.Checked = true;
+            this.MemberSignInCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MemberSignInCheckBox.Location = new System.Drawing.Point(770, 107);
+            this.MemberSignInCheckBox.Name = "MemberSignInCheckBox";
+            this.MemberSignInCheckBox.Size = new System.Drawing.Size(49, 17);
+            this.MemberSignInCheckBox.TabIndex = 32;
+            this.MemberSignInCheckBox.Text = "إظهار";
+            this.MemberSignInCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // IncomeCheckBox
+            // 
+            this.IncomeCheckBox.AutoSize = true;
+            this.IncomeCheckBox.Checked = true;
+            this.IncomeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.IncomeCheckBox.Location = new System.Drawing.Point(640, 107);
+            this.IncomeCheckBox.Name = "IncomeCheckBox";
+            this.IncomeCheckBox.Size = new System.Drawing.Size(49, 17);
+            this.IncomeCheckBox.TabIndex = 33;
+            this.IncomeCheckBox.Text = "إظهار";
+            this.IncomeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // MemberShipCheckBox
+            // 
+            this.MemberShipCheckBox.AutoSize = true;
+            this.MemberShipCheckBox.Checked = true;
+            this.MemberShipCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MemberShipCheckBox.Location = new System.Drawing.Point(535, 107);
+            this.MemberShipCheckBox.Name = "MemberShipCheckBox";
+            this.MemberShipCheckBox.Size = new System.Drawing.Size(49, 17);
+            this.MemberShipCheckBox.TabIndex = 34;
+            this.MemberShipCheckBox.Text = "إظهار";
+            this.MemberShipCheckBox.UseVisualStyleBackColor = true;
+            // 
             // ReportsMainUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.MemberShipCheckBox);
+            this.Controls.Add(this.IncomeCheckBox);
+            this.Controls.Add(this.MemberSignInCheckBox);
+            this.Controls.Add(this.WelcomeProfileCheckBox);
+            this.Controls.Add(this.UserLogsCheckBox);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label4);
@@ -665,5 +735,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox UserLogsCheckBox;
+        private System.Windows.Forms.CheckBox WelcomeProfileCheckBox;
+        private System.Windows.Forms.CheckBox MemberSignInCheckBox;
+        private System.Windows.Forms.CheckBox IncomeCheckBox;
+        private System.Windows.Forms.CheckBox MemberShipCheckBox;
     }
 }
