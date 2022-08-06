@@ -23,6 +23,9 @@ namespace MonstersGYM
         ICardDetails CardDetails = new CardDetailsRepo();
         ICardDefinition CardDefinition = new CardDefinitionRepo();
         IIncome Income = new IncomeRepo();
+        IPromotion Promotion = new PromotionRepo();
+        List<Promotions> promotions;
+
         int TotalPrice = 0;
 
         public ExtendRegisterationUserControl()
@@ -34,14 +37,7 @@ namespace MonstersGYM
         {
 
             //LoadAllMembers();
-            radioButton2.Checked = true;
-
-            comboBox1.Items.Add("0.5");
-            comboBox1.Items.Add("1");
-            comboBox1.Items.Add("3");
-            comboBox1.Items.Add("6");
-            comboBox1.Items.Add("9");
-            comboBox1.Items.Add("12");
+            UseNewCardRadioButton.Checked = true;
         }
         public void LoadAllMembers()
         {
@@ -65,14 +61,16 @@ namespace MonstersGYM
             long memberId = MemberProfile.GetMemberId(NamesTextBox.Text, out errorMsg);
             long cardId = RegisteredCard.GetCardID(memberId, out errorMsg);
             OldBarcodeLabel.Text = Cards.GetCardBarcode(cardId, out errorMsg);
-            bool isActive = RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg);
-            if (isActive)
-            {
-                radioButton2.Enabled = false;
-                UseSameCardRadioButton.Checked = true;
-            }
-            else
-                radioButton2.Enabled = true;
+            UseSameCardRadioButton.Checked = true;
+
+            //bool isActive = RegisteredCard.IsMemberCurrentActive(memberId, out errorMsg);
+            //if (isActive)
+            //{
+            //    radioButton2.Enabled = false;
+            //    UseSameCardRadioButton.Checked = true;
+            //}
+            //else
+            //    radioButton2.Enabled = true;
 
         }
         void loadPicture(byte[] PicFromDb)
@@ -88,7 +86,7 @@ namespace MonstersGYM
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            if (!radioButton2.Checked)
+            if (!UseNewCardRadioButton.Checked)
             {
                 ScannedBarcodeTextBox.Enabled = false;
                 RecievOldCardCheckBox.Enabled = false;
@@ -98,8 +96,28 @@ namespace MonstersGYM
                 ScannedBarcodeTextBox.Enabled = true;
                 RecievOldCardCheckBox.Enabled = true;
             }
-        }
 
+            comboBox1.SelectedItem = null;
+        }
+        public void LoadAllActivePromo(int CardHeaderID,decimal duration)
+        {
+            PromotionComboBox.Items.Clear();
+            string errorMsg = "";
+            promotions = Promotion.GetAllActivePromotionByID(CardHeaderID.ToString(),duration.ToString(), out errorMsg);
+            if (!string.IsNullOrEmpty(errorMsg))
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (promotions.Count > 0)
+            {
+                PromotionComboBox.Enabled = true;
+                foreach (var promo in promotions)
+                {
+                    PromotionComboBox.Items.Add(promo.Name);
+                }
+            }
+            else
+                PromotionComboBox.Enabled = false;
+
+        }
         private void SaveButton_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem == null)
@@ -116,28 +134,39 @@ namespace MonstersGYM
             string usedCardBarcode = "";
 
             if (UseSameCardRadioButton.Checked)
-            {
                 usedCardBarcode = OldBarcodeLabel.Text;
-                cardId = Cards.GetCardId(usedCardBarcode, out errorMsg);
-                int cardHeaderID = Cards.getCardHeaderID(cardId, out errorMsg);
-                TotalPrice = CardDetails.GetPrice(cardHeaderID, decimal.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
-            }
             else
-            {
                 usedCardBarcode = ScannedBarcodeTextBox.Text;
 
-                int cardHeaderID = Cards.getCardHeaderID(usedCardBarcode, out errorMsg);
-                cardId = Cards.GetCardId(usedCardBarcode, out errorMsg);
-                TotalPrice = CardDefinition.GetCardPrice(cardHeaderID, out errorMsg);
-                TotalPrice += CardDetails.GetPrice(cardHeaderID, decimal.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
-                if (RecievOldCardCheckBox.Checked)
-                {
-                    int oldCardHeaderId = Cards.getCardHeaderID(OldBarcodeLabel.Text, out errorMsg);
-                    int oldCardPrice = CardDefinition.GetCardPrice(oldCardHeaderId, out errorMsg);
-                    TotalPrice -= oldCardPrice;
-                }
+            cardId = Cards.GetCardId(usedCardBarcode, out errorMsg);
+            int cardHeaderID = Cards.getCardHeaderID(cardId, out errorMsg);
+            TotalPrice = CardDetails.GetPrice(cardHeaderID, decimal.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
+            
+            int originalAmount;
+            int amount = originalAmount = TotalPrice;
+            long PromoId = -1;
+            if (PromotionComboBox.SelectedItem != null)
+            {
+                var promoName = PromotionComboBox.SelectedItem.ToString().Trim();
+                var selectedPromo = promotions.FirstOrDefault(x => x.Name == promoName);
+                var value = selectedPromo.Value;
+                PromoId = selectedPromo.Id;
+                int discount = (amount * value / 100);
+                amount = amount - discount;
             }
-            if (TotalPrice <= 0)
+
+            //apply promotion on memberShip amount only
+            amount = UseNewCardRadioButton.Checked ? (amount + CardDefinition.GetCardPrice(cardHeaderID, out errorMsg))
+                : UseSameCardRadioButton.Checked ? amount : 0;
+
+            if (RecievOldCardCheckBox.Checked && UseNewCardRadioButton.Checked)
+            {
+                int oldCardHeaderId = Cards.getCardHeaderID(OldBarcodeLabel.Text, out errorMsg);
+                int oldCardPrice = CardDefinition.GetCardPrice(oldCardHeaderId, out errorMsg);
+                amount -= oldCardPrice;
+            }
+
+            if (originalAmount <= 0 || amount < 0)
             {
                 MessageBox.Show("لا يمكن تجديد الأشتراك العضو غير مسجل من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -148,13 +177,13 @@ namespace MonstersGYM
                 MessageBox.Show("تم مسح كارت مستخدم من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DialogResult result = MessageBox.Show("السعر : " + TotalPrice.ToString(), "هل تريد الأستمرار ؟", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (result == DialogResult.Cancel)
-                return;
-            else
+
+            
+
+            DialogResult result = MessageBox.Show("السعر : " + amount.ToString(), "هل تريد الأستمرار ؟", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.OK)
             {
                 long memberId = MemberProfile.GetMemberId(NamesTextBox.Text, out errorMsg);
-                int cardHeaderID = Cards.getCardHeaderID(usedCardBarcode, out errorMsg);
                 long cardDetails = CardDetails.GetCardDetailesID(cardHeaderID, decimal.Parse(comboBox1.SelectedItem.ToString()), out errorMsg);
                 int totalFreez = CardDetails.GetTotalFreez(cardDetails, out errorMsg);
                 int totalInvitation = CardDetails.GetTotalInvitation(cardDetails, out errorMsg);
@@ -173,7 +202,9 @@ namespace MonstersGYM
                 if (success)
                 {
                     long registeredCardId = RegisteredCard.GetCardID(memberId, out errorMsg);
-                    success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, registeredCardId, decimal.Parse(comboBox1.SelectedItem.ToString()), TotalPrice, out errorMsg);
+                    success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, registeredCardId, decimal.Parse(comboBox1.SelectedItem.ToString()), 
+                        amount,originalAmount, PromoId, out errorMsg);
+
                     if (!UseSameCardRadioButton.Checked)
                     {
                         Cards.RegisterCard(ScannedBarcodeTextBox.Text, out errorMsg);
@@ -187,6 +218,39 @@ namespace MonstersGYM
                     MessageBox.Show("تم تجديد الأشتراك بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null)
+            {
+                string errorMsg = "";
+                string usedCardBarcode;
+                if (UseSameCardRadioButton.Checked)
+                    usedCardBarcode = OldBarcodeLabel.Text;
+                else
+                    usedCardBarcode = ScannedBarcodeTextBox.Text;
+
+                var cardId = Cards.GetCardId(usedCardBarcode, out errorMsg);
+                int cardHeaderID = Cards.getCardHeaderID(cardId, out errorMsg);
+
+                LoadAllActivePromo(cardHeaderID, decimal.Parse(comboBox1.SelectedItem.ToString()));
+            }
+            else
+            {
+                PromotionComboBox.Items.Clear();
+                PromotionComboBox.Enabled = false;
+            }
+        }
+
+        private void ScannedBarcodeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            comboBox1.SelectedItem = null;
         }
     }
 }

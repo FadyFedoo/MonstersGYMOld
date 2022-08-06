@@ -22,6 +22,7 @@ namespace MonstersGYM
         IRegisteredCard RegisteredCard = new RegisteredCardRepo();
         IIncomingAndExpenses IncomingAndExpenses = new IncomingAndExpensesRepo();
         IIncome Income = new IncomeRepo();
+
         List<MembershipReport> memberShipDetails = new List<MembershipReport>();
         List<User> users;
 
@@ -69,12 +70,25 @@ namespace MonstersGYM
             dataGridView4.DataSource = Logs;
             dataGridView6.DataSource = general;
 
-            int totalIncoming = Logs.Where(x => x.Amount > 0).Sum(x => x.Amount);
-            int totalExpenses = Logs.Where(x => x.Amount < 0).Sum(x => x.Amount);
+            int totalIncoming = Logs.Where(x => x.OriginalAmount > 0).Sum(x => x.Amount);
+            int totalExpenses = Logs.Where(x => x.OriginalAmount < 0).Sum(x => x.Amount);
+            int totalDiscount = Logs.Sum(x => x.Discount);
 
             TotalIncomingLabel.Text = totalIncoming.ToString();
             TotalExpensesLabel.Text = (totalExpenses * -1).ToString();
-            TotalProfitLabel.Text = (totalIncoming + totalExpenses).ToString();
+            TotalDiscountLabel.Text = (totalDiscount * -1).ToString();
+
+            TotalProfitLabel.Text = (totalIncoming + totalExpenses + totalDiscount).ToString();
+        }
+        void LoadPromotionReport(long userId, DateTime fromDate, DateTime toDate)
+        {
+            string errorMsg;
+            List<GeneralPromotionReport> general;
+            List<PromotionReport> Logs = Income.LoadPromotionReport(userId, fromDate, toDate, out general, out errorMsg);
+
+            dataGridView10.DataSource = Logs;
+            dataGridView9.DataSource = general;
+
         }
         void LoadMemberShip(long userId, DateTime fromDate, DateTime toDate)
         {
@@ -86,6 +100,7 @@ namespace MonstersGYM
             dataGridView8.DataSource = null;
         }
 
+        
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             dateTimePicker1.Enabled = !checkBox1.Checked;
@@ -121,23 +136,28 @@ namespace MonstersGYM
 
             if(UserLogsCheckBox.Checked)
                 loadUserLogsReport(userId, fromDate, toDate);
-            progressBar1.Value += 20;
+            progressBar1.Value += 16;
 
             if(WelcomeProfileCheckBox.Checked)
                 LoadWelcomeProfile(userId, fromDate, toDate);
-            progressBar1.Value += 20;
+            progressBar1.Value += 17;
 
             if(MemberSignInCheckBox.Checked)
                 LoadMemberSignIn(userId, fromDate, toDate);
-            progressBar1.Value += 20;
+            progressBar1.Value += 16;
 
             if(IncomeCheckBox.Checked)
                 LoadIncome(userId, fromDate, toDate);
-            progressBar1.Value += 20;
+            progressBar1.Value += 17;
 
             if(MemberShipCheckBox.Checked)
                 LoadMemberShip(userId, fromDate, toDate);
-            progressBar1.Value += 20;
+            progressBar1.Value += 17;
+
+            if (PromotionsCheckBox.Checked)
+                LoadPromotionReport(userId, fromDate, toDate);
+            progressBar1.Value += 17;
+
         }
 
         private void ShowDetailsButton_Click(object sender, EventArgs e)

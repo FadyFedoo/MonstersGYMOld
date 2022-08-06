@@ -40,6 +40,7 @@
             this.SessionCheckBox = new System.Windows.Forms.CheckBox();
             this.SessionComboBox = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,7 +143,8 @@
             this.SessionComboBox.FormattingEnabled = true;
             this.SessionComboBox.Items.AddRange(new object[] {
             "رجال",
-            "سيدات"});
+            "سيدات",
+            "زومبا&ايروبيكس"});
             this.SessionComboBox.Location = new System.Drawing.Point(722, 496);
             this.SessionComboBox.Name = "SessionComboBox";
             this.SessionComboBox.Size = new System.Drawing.Size(277, 21);
@@ -163,15 +165,35 @@
             this.dataGridView1.GridColor = System.Drawing.Color.Gold;
             this.dataGridView1.Location = new System.Drawing.Point(3, 169);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView1.Size = new System.Drawing.Size(429, 457);
             this.dataGridView1.TabIndex = 22;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Gold;
+            this.button2.Image = global::MonstersGYM.Properties.Resources.Reporst;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.Location = new System.Drawing.Point(166, 48);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(85, 90);
+            this.button2.TabIndex = 36;
+            this.button2.Text = "Excel";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // WelcomeProfileUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.SessionComboBox);
             this.Controls.Add(this.SessionCheckBox);
@@ -206,5 +228,6 @@
         private System.Windows.Forms.CheckBox SessionCheckBox;
         private System.Windows.Forms.ComboBox SessionComboBox;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button2;
     }
 }

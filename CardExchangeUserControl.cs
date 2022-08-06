@@ -132,7 +132,8 @@ namespace MonstersGYM
             }
             bool success = RegisteredCard.UpdateOldAndInsertNew(memberId, cardId, out errorMsg);
             success = Cards.RegisterCard(ScannedBarcodeTextBox.Text, out errorMsg);
-            success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, duration, 10, out errorMsg);
+            int amount = CardDefinition.GetCardPrice(cardHeaderId, out errorMsg);
+            success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, duration, amount, amount,-1, out errorMsg);
 
             if (success)
                 MessageBox.Show("تم تبديل الكارت للعميل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);

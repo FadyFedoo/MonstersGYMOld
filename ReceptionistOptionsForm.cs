@@ -173,5 +173,12 @@ namespace MonstersGYM
             bool success = userInAndOut.InsertLogOut(out errorMsg);
             User.CurrentUser = null;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panel4.Height = button3.Height;
+            panel4.Top = button3.Top;
+            incommingAndExpensesUserControl1.BringToFront();
+        }
     }
 }

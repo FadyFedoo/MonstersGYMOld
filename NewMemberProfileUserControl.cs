@@ -28,11 +28,12 @@ namespace MonstersGYM
         IIncome Income = new IncomeRepo();
         IWelcomeProfile WelcomeProfile = new WelcomeProfileRepo();
         ICards Cards = new CardsRepo();
+        IPromotion Promotion = new PromotionRepo();
 
         List<WelcomeProfileReport> welcomeProfiles;
         AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
-        int TotalPrice = 0;
         int previousPrice = 0;
+        List<Promotions> promotions;
 
         public NewMemberProfileUserControl()
         {
@@ -54,6 +55,25 @@ namespace MonstersGYM
             comboBox2.Items.Add("6");
             comboBox2.Items.Add("9");
             comboBox2.Items.Add("12");
+        }
+        public void LoadAllActivePromo(int CardHeaderID,decimal Duration)
+        {
+            PromotionComboBox.Items.Clear();
+            string errorMsg = "";
+            promotions = Promotion.GetAllActivePromotionByID(CardHeaderID.ToString(),Duration.ToString(), out errorMsg);
+            if(!string.IsNullOrEmpty(errorMsg))
+                MessageBox.Show(errorMsg, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (promotions.Count > 0)
+            {
+                PromotionComboBox.Enabled = true;
+                foreach (var promo in promotions)
+                {
+                    PromotionComboBox.Items.Add(promo.Name);
+                }
+            }
+            else
+                PromotionComboBox.Enabled = false;
+
         }
         void fillCameraComboox()
         {
@@ -117,19 +137,40 @@ namespace MonstersGYM
                 MessageBox.Show("إختر تاريخ يبدأ من تاريخ اليوم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TotalPrice <= 0)
-            {
-                MessageBox.Show("لا يمكن الحفظ , السعر أقل من 0", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            
             if (comboBox2.SelectedItem == null)
             {
                 MessageBox.Show("إختر مدة أولا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             string errorMsg = "";
-            bool exist = MemberProfile.IsExist(NameTextBox.Text.Trim(), out errorMsg);
+            int TotalPrice = 0;
             int cardHeaderId = Card.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
+            TotalPrice = CardDetails.GetPrice(cardHeaderId, decimal.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
+
+            int originalAmount;
+            int amount = originalAmount = TotalPrice;
+            long PromoId = -1;
+            if (PromotionComboBox.SelectedItem != null)
+            {
+                var promoName = PromotionComboBox.SelectedItem.ToString().Trim();
+                var selectedPromo = promotions.FirstOrDefault(x => x.Name == promoName);
+                var value = selectedPromo.Value;
+                PromoId = selectedPromo.Id;
+                int discount = (amount * value / 100);
+                amount = amount - discount;
+            }
+
+            amount += CardDefinition.GetCardPrice(cardHeaderId, out errorMsg); // apply promotion on memberShip amount only
+
+            if (originalAmount <= 0 || amount < 0 )
+            {
+                MessageBox.Show("لا يمكن الحفظ , السعر أقل من 0", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            bool exist = MemberProfile.IsExist(NameTextBox.Text.Trim(), out errorMsg);
             long CardDetailsId = CardDetails.GetCardDetailesID(cardHeaderId, decimal.Parse(comboBox2.SelectedItem.ToString()), out errorMsg);
             long cardId = Card.GetCardId(ScannedBarcodeTextBox.Text, out errorMsg);
             bool Used = RegistedCards.IsCardCurrentActive(cardId, StartDateTimePicker.Value, out errorMsg);
@@ -137,6 +178,10 @@ namespace MonstersGYM
 
             if (!exist && !Used && !isregistedBefore)
             {
+                var result = MessageBox.Show("السعر= "+ amount.ToString() + ", هل تريد الأستمرار؟", "تأكيد", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Cancel)
+                    return;
+
                 byte[] picture = null;
                 if (pictureBox1.Image != null)
                     picture = ImageToByte2(pictureBox1.Image);
@@ -167,7 +212,8 @@ namespace MonstersGYM
 
                 success = RegistedCards.InsertNewRegisteredCard(memberId, cardId, CardDetailsId, 0, 0, 0,0, totalFreez, totalPersonal, totalInvitation, totalClasses,
                     StartDateTimePicker.Value, endDate, out errorMsg);
-                success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, decimal.Parse(comboBox2.SelectedItem.ToString()), TotalPrice, out errorMsg);
+                success = Income.InsertNewIncome(memberId, User.CurrentUser.ID, cardId, decimal.Parse(comboBox2.SelectedItem.ToString()), amount,originalAmount,
+                    PromoId, out errorMsg);
                 success = Card.RegisterCard(ScannedBarcodeTextBox.Text, out errorMsg);
 
                 if (success)
@@ -177,6 +223,7 @@ namespace MonstersGYM
                     WeightNumericUpDown.Value = 50;
                     BirthDateTimePicker.Value = DateTime.Now;
                     pictureBox1.Image = null;
+                    PromotionComboBox.Items.Clear();
                     MessageBox.Show("تم الاشتراك بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -193,7 +240,6 @@ namespace MonstersGYM
                 MessageBox.Show("هذا الكارت مستخدم من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             ScannedBarcodeTextBox.Text = "";
-            textBox8.Text = "";
         }
         public static byte[] ImageToByte2(Image img)
         {
@@ -214,23 +260,24 @@ namespace MonstersGYM
             if (comboBox2.SelectedItem != null)
             {
                 string errorMsg = "";
-                TotalPrice -= previousPrice;
+                //TotalPrice -= previousPrice;
                 decimal selectedMonths = decimal.Parse(comboBox2.SelectedItem.ToString());
                 int cardHeaderId = Card.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
-                previousPrice = CardDetails.GetPrice(cardHeaderId, selectedMonths, out errorMsg);
-                TotalPrice += previousPrice;
-                textBox8.Text = TotalPrice.ToString();
+                //previousPrice = CardDetails.GetPrice(cardHeaderId, selectedMonths, out errorMsg);
+                //TotalPrice += previousPrice;
+
+                LoadAllActivePromo(cardHeaderId, selectedMonths);
             }
         }
 
         private void ScannedBarcodeTextBox_TextChanged(object sender, EventArgs e)
         {
-            string errorMsg = "";
-            TotalPrice = 0;
-            int cardHeaderId = Card.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
-            TotalPrice = CardDefinition.GetCardPrice(cardHeaderId, out errorMsg);
-            previousPrice = 0;
-            comboBox2.SelectedItem = null;
+            //string errorMsg = "";
+            //TotalPrice = 0;
+            //int cardHeaderId = Card.getCardHeaderID(ScannedBarcodeTextBox.Text, out errorMsg);
+            //TotalPrice = CardDefinition.GetCardPrice(cardHeaderId, out errorMsg);
+            //previousPrice = 0;
+            //comboBox2.SelectedItem = null;
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)

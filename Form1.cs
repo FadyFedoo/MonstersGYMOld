@@ -1,5 +1,6 @@
 ﻿using MonstersGYM.Core.Interface;
 using MonstersGYM.Core.PocoClasses;
+using MonstersGYM.Infrastructure;
 using MonstersGYM.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace MonstersGYM
         public LoginForm()
         {
             InitializeComponent();
+            if (Logs.CurrentLog == null)
+                Logs.CurrentLog = new Logs();
         }
 
         private void button1_Click(object sender, EventArgs e)

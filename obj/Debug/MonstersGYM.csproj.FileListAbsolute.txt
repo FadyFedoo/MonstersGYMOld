@@ -48,3 +48,4 @@ C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersG
 C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersGYM\obj\Debug\MonstersGYM.exe
 C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersGYM\obj\Debug\MonstersGYM.pdb
 C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersGYM\obj\Debug\MonstersGYM.MemberReportsUserControl.resources
+C:\Users\fadyyoussef\Documents\Visual Studio 2015\Projects\MonstersGYM\MonstersGYM\obj\Debug\MonstersGYM.PromotionUserControl.resources

@@ -35,7 +35,6 @@
             this.BirthDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.ScannedBarcodeTextBox = new System.Windows.Forms.TextBox();
             this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.PhoneTextBox = new System.Windows.Forms.TextBox();
@@ -53,6 +52,7 @@
             this.TakePhotobutton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PromotionComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.WeightNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeightNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -152,16 +152,6 @@
             this.comboBox1.TabIndex = 42;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // textBox8
-            // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(720, 580);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(162, 31);
-            this.textBox8.TabIndex = 40;
-            this.textBox8.Text = "0";
-            // 
             // ScannedBarcodeTextBox
             // 
             this.ScannedBarcodeTextBox.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -202,9 +192,9 @@
             this.label8.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(1026, 581);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 30);
+            this.label8.Size = new System.Drawing.Size(70, 30);
             this.label8.TabIndex = 35;
-            this.label8.Text = "السعر";
+            this.label8.Text = "العرض";
             // 
             // label7
             // 
@@ -347,10 +337,20 @@
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
             // 
+            // PromotionComboBox
+            // 
+            this.PromotionComboBox.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PromotionComboBox.FormattingEnabled = true;
+            this.PromotionComboBox.Location = new System.Drawing.Point(605, 585);
+            this.PromotionComboBox.Name = "PromotionComboBox";
+            this.PromotionComboBox.Size = new System.Drawing.Size(277, 30);
+            this.PromotionComboBox.TabIndex = 53;
+            // 
             // NewMemberProfileUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.PromotionComboBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.StartDateTimePicker);
@@ -363,7 +363,6 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBox8);
             this.Controls.Add(this.ScannedBarcodeTextBox);
             this.Controls.Add(this.AddressTextBox);
             this.Controls.Add(this.PhoneTextBox);
@@ -399,7 +398,6 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox ScannedBarcodeTextBox;
         private System.Windows.Forms.TextBox AddressTextBox;
         private System.Windows.Forms.TextBox PhoneTextBox;
@@ -414,5 +412,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox PromotionComboBox;
     }
 }

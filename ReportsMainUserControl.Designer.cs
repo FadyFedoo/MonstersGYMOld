@@ -36,6 +36,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.UserLogsTabPage = new System.Windows.Forms.TabPage();
@@ -50,6 +52,10 @@
             this.MemberSignInTabPage = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.IncomeTabPage = new System.Windows.Forms.TabPage();
+            this.TotalDiscountLabel = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.TotalProfitLabel = new System.Windows.Forms.Label();
@@ -73,12 +79,16 @@
             this.ShowDetailsButton = new System.Windows.Forms.Button();
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.PromotionsTabPage = new System.Windows.Forms.TabPage();
             this.SearchButton = new System.Windows.Forms.Button();
             this.UserLogsCheckBox = new System.Windows.Forms.CheckBox();
             this.WelcomeProfileCheckBox = new System.Windows.Forms.CheckBox();
             this.MemberSignInCheckBox = new System.Windows.Forms.CheckBox();
             this.IncomeCheckBox = new System.Windows.Forms.CheckBox();
             this.MemberShipCheckBox = new System.Windows.Forms.CheckBox();
+            this.PromotionsCheckBox = new System.Windows.Forms.CheckBox();
+            this.dataGridView9 = new System.Windows.Forms.DataGridView();
+            this.dataGridView10 = new System.Windows.Forms.DataGridView();
             this.UserLogsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.WelcomeProfileTabPage.SuspendLayout();
@@ -93,6 +103,9 @@
             this.MemberShipTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.PromotionsTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).BeginInit();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -179,6 +192,7 @@
             this.dataGridView5.GridColor = System.Drawing.Color.Gold;
             this.dataGridView5.Location = new System.Drawing.Point(6, 9);
             this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.ReadOnly = true;
             this.dataGridView5.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView5.Size = new System.Drawing.Size(401, 458);
             this.dataGridView5.TabIndex = 2;
@@ -198,6 +212,7 @@
             this.dataGridView2.GridColor = System.Drawing.Color.Gold;
             this.dataGridView2.Location = new System.Drawing.Point(413, 6);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView2.Size = new System.Drawing.Size(720, 458);
             this.dataGridView2.TabIndex = 1;
@@ -265,6 +280,7 @@
             this.dataGridView3.GridColor = System.Drawing.Color.Gold;
             this.dataGridView3.Location = new System.Drawing.Point(14, 6);
             this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView3.Size = new System.Drawing.Size(415, 458);
             this.dataGridView3.TabIndex = 1;
@@ -272,6 +288,10 @@
             // IncomeTabPage
             // 
             this.IncomeTabPage.BackColor = System.Drawing.Color.Black;
+            this.IncomeTabPage.Controls.Add(this.TotalDiscountLabel);
+            this.IncomeTabPage.Controls.Add(this.label12);
+            this.IncomeTabPage.Controls.Add(this.label11);
+            this.IncomeTabPage.Controls.Add(this.label10);
             this.IncomeTabPage.Controls.Add(this.label14);
             this.IncomeTabPage.Controls.Add(this.label13);
             this.IncomeTabPage.Controls.Add(this.TotalProfitLabel);
@@ -292,11 +312,51 @@
             this.IncomeTabPage.TabIndex = 3;
             this.IncomeTabPage.Text = "تقرير المالية";
             // 
+            // TotalDiscountLabel
+            // 
+            this.TotalDiscountLabel.AutoSize = true;
+            this.TotalDiscountLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalDiscountLabel.Location = new System.Drawing.Point(144, 51);
+            this.TotalDiscountLabel.Name = "TotalDiscountLabel";
+            this.TotalDiscountLabel.Size = new System.Drawing.Size(22, 24);
+            this.TotalDiscountLabel.TabIndex = 40;
+            this.TotalDiscountLabel.Text = "0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(222, 51);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(17, 24);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "-";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(139, 12);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 24);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "الخصومات";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(222, 12);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(17, 24);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "-";
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(300, 51);
+            this.label14.Location = new System.Drawing.Point(336, 51);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(17, 24);
             this.label14.TabIndex = 36;
@@ -306,7 +366,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(127, 51);
+            this.label13.Location = new System.Drawing.Point(115, 51);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(23, 24);
             this.label13.TabIndex = 35;
@@ -326,7 +386,7 @@
             // 
             this.TotalExpensesLabel.AutoSize = true;
             this.TotalExpensesLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalExpensesLabel.Location = new System.Drawing.Point(203, 51);
+            this.TotalExpensesLabel.Location = new System.Drawing.Point(249, 51);
             this.TotalExpensesLabel.Name = "TotalExpensesLabel";
             this.TotalExpensesLabel.Size = new System.Drawing.Size(22, 24);
             this.TotalExpensesLabel.TabIndex = 33;
@@ -336,7 +396,7 @@
             // 
             this.TotalIncomingLabel.AutoSize = true;
             this.TotalIncomingLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalIncomingLabel.Location = new System.Drawing.Point(361, 51);
+            this.TotalIncomingLabel.Location = new System.Drawing.Point(371, 51);
             this.TotalIncomingLabel.Name = "TotalIncomingLabel";
             this.TotalIncomingLabel.Size = new System.Drawing.Size(22, 24);
             this.TotalIncomingLabel.TabIndex = 32;
@@ -346,7 +406,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(127, 11);
+            this.label9.Location = new System.Drawing.Point(115, 11);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(23, 24);
             this.label9.TabIndex = 31;
@@ -356,7 +416,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(300, 12);
+            this.label8.Location = new System.Drawing.Point(336, 12);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(17, 24);
             this.label8.TabIndex = 30;
@@ -376,21 +436,21 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(331, 11);
+            this.label6.Location = new System.Drawing.Point(369, 12);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(111, 24);
+            this.label6.Size = new System.Drawing.Size(66, 24);
             this.label6.TabIndex = 28;
-            this.label6.Text = "إجمالى المدخلات";
+            this.label6.Text = "المدخلات";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(167, 11);
+            this.label5.Location = new System.Drawing.Point(245, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 24);
+            this.label5.Size = new System.Drawing.Size(72, 24);
             this.label5.TabIndex = 27;
-            this.label5.Text = "إجمالى المدفوعات";
+            this.label5.Text = "المدفوعات";
             // 
             // dataGridView6
             // 
@@ -407,6 +467,7 @@
             this.dataGridView6.GridColor = System.Drawing.Color.Gold;
             this.dataGridView6.Location = new System.Drawing.Point(6, 78);
             this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.ReadOnly = true;
             this.dataGridView6.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView6.Size = new System.Drawing.Size(425, 384);
             this.dataGridView6.TabIndex = 2;
@@ -426,6 +487,7 @@
             this.dataGridView4.GridColor = System.Drawing.Color.Gold;
             this.dataGridView4.Location = new System.Drawing.Point(454, 11);
             this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView4.Size = new System.Drawing.Size(678, 453);
             this.dataGridView4.TabIndex = 1;
@@ -461,8 +523,9 @@
             this.dataGridView7.GridColor = System.Drawing.Color.Gold;
             this.dataGridView7.Location = new System.Drawing.Point(10, 6);
             this.dataGridView7.Name = "dataGridView7";
+            this.dataGridView7.ReadOnly = true;
             this.dataGridView7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView7.Size = new System.Drawing.Size(431, 350);
+            this.dataGridView7.Size = new System.Drawing.Size(624, 350);
             this.dataGridView7.TabIndex = 0;
             // 
             // MemberShipTabPage
@@ -549,10 +612,11 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView8.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView8.GridColor = System.Drawing.Color.Gold;
-            this.dataGridView8.Location = new System.Drawing.Point(447, 6);
+            this.dataGridView8.Location = new System.Drawing.Point(640, 6);
             this.dataGridView8.Name = "dataGridView8";
+            this.dataGridView8.ReadOnly = true;
             this.dataGridView8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dataGridView8.Size = new System.Drawing.Size(683, 458);
+            this.dataGridView8.Size = new System.Drawing.Size(490, 458);
             this.dataGridView8.TabIndex = 1;
             // 
             // tabControl1
@@ -562,6 +626,7 @@
             this.tabControl1.Controls.Add(this.MemberSignInTabPage);
             this.tabControl1.Controls.Add(this.IncomeTabPage);
             this.tabControl1.Controls.Add(this.MemberShipTabPage);
+            this.tabControl1.Controls.Add(this.PromotionsTabPage);
             this.tabControl1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(13, 130);
             this.tabControl1.Name = "tabControl1";
@@ -571,6 +636,18 @@
             this.tabControl1.Size = new System.Drawing.Size(1144, 503);
             this.tabControl1.TabIndex = 18;
             this.tabControl1.Tag = "";
+            // 
+            // PromotionsTabPage
+            // 
+            this.PromotionsTabPage.BackColor = System.Drawing.Color.Black;
+            this.PromotionsTabPage.Controls.Add(this.dataGridView9);
+            this.PromotionsTabPage.Controls.Add(this.dataGridView10);
+            this.PromotionsTabPage.Location = new System.Drawing.Point(4, 29);
+            this.PromotionsTabPage.Name = "PromotionsTabPage";
+            this.PromotionsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.PromotionsTabPage.Size = new System.Drawing.Size(1136, 470);
+            this.PromotionsTabPage.TabIndex = 5;
+            this.PromotionsTabPage.Text = "تقرير العروض";
             // 
             // SearchButton
             // 
@@ -650,11 +727,64 @@
             this.MemberShipCheckBox.Text = "إظهار";
             this.MemberShipCheckBox.UseVisualStyleBackColor = true;
             // 
+            // PromotionsCheckBox
+            // 
+            this.PromotionsCheckBox.AutoSize = true;
+            this.PromotionsCheckBox.Checked = true;
+            this.PromotionsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.PromotionsCheckBox.Location = new System.Drawing.Point(417, 107);
+            this.PromotionsCheckBox.Name = "PromotionsCheckBox";
+            this.PromotionsCheckBox.Size = new System.Drawing.Size(49, 17);
+            this.PromotionsCheckBox.TabIndex = 35;
+            this.PromotionsCheckBox.Text = "إظهار";
+            this.PromotionsCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView9
+            // 
+            this.dataGridView9.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dataGridView9.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView9.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView9.GridColor = System.Drawing.Color.Gold;
+            this.dataGridView9.Location = new System.Drawing.Point(5, 9);
+            this.dataGridView9.Name = "dataGridView9";
+            this.dataGridView9.ReadOnly = true;
+            this.dataGridView9.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dataGridView9.Size = new System.Drawing.Size(425, 451);
+            this.dataGridView9.TabIndex = 4;
+            // 
+            // dataGridView10
+            // 
+            this.dataGridView10.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dataGridView10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView10.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridView10.GridColor = System.Drawing.Color.Gold;
+            this.dataGridView10.Location = new System.Drawing.Point(453, 9);
+            this.dataGridView10.Name = "dataGridView10";
+            this.dataGridView10.ReadOnly = true;
+            this.dataGridView10.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dataGridView10.Size = new System.Drawing.Size(678, 453);
+            this.dataGridView10.TabIndex = 3;
+            // 
             // ReportsMainUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.PromotionsCheckBox);
             this.Controls.Add(this.MemberShipCheckBox);
             this.Controls.Add(this.IncomeCheckBox);
             this.Controls.Add(this.MemberSignInCheckBox);
@@ -690,6 +820,9 @@
             this.MemberShipTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.PromotionsTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -740,5 +873,13 @@
         private System.Windows.Forms.CheckBox MemberSignInCheckBox;
         private System.Windows.Forms.CheckBox IncomeCheckBox;
         private System.Windows.Forms.CheckBox MemberShipCheckBox;
+        private System.Windows.Forms.Label TotalDiscountLabel;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TabPage PromotionsTabPage;
+        private System.Windows.Forms.CheckBox PromotionsCheckBox;
+        private System.Windows.Forms.DataGridView dataGridView9;
+        private System.Windows.Forms.DataGridView dataGridView10;
     }
 }

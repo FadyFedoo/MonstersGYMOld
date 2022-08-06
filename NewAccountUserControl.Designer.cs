@@ -75,6 +75,7 @@
             this.dataGridView1.GridColor = System.Drawing.Color.Gold;
             this.dataGridView1.Location = new System.Drawing.Point(14, 196);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(435, 418);
             this.dataGridView1.TabIndex = 16;
             // 

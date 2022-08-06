@@ -155,5 +155,14 @@ namespace MonstersGYM
             bool success = userInAndOut.InsertLogOut(out errorMsg);
             User.CurrentUser = null;
         }
+
+        private void PromotionButton_Click(object sender, EventArgs e)
+        {
+            panel4.Height = PromotionButton.Height;
+            panel4.Top = PromotionButton.Top;
+            promotionUserControl1.BringToFront();
+            
+
+        }
     }
 }

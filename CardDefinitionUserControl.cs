@@ -128,5 +128,10 @@ namespace MonstersGYM
             bool success = CardDefinition.EditCardHeader(Id, cardName, cardPrice, out errorMsg);
             return success;
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
